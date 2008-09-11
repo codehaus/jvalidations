@@ -40,7 +40,7 @@ public class SyntaxSupportTest extends AbstractJValidationsTestCase {
     }
 
     public void test_elseFindsMethodsInSuperClass() {
-        ExtendsCallbackForTest callback = new ExtendsCallbackForTest();
+        ExtendsCallbackForTests callback = new ExtendsCallbackForTests();
         ElseClause elseClause = _else(callback, "callbackMethod", fieldName(), requiredCount(), actualCount());
 
         Cardinality cardinality = mock().cardinality().withAccessors(new FieldAccessor(""))
@@ -54,7 +54,7 @@ public class SyntaxSupportTest extends AbstractJValidationsTestCase {
         void callbackMethod(String fieldName, int requiredCount, int actualCount);
     }
 
-    public static class CallbackForTest implements Callback {
+    public static class CallbackForTests implements Callback {
         private boolean wasCalled;
 
         public void callbackMethod(String fieldName, int requiredCount, int actualCount) {
@@ -66,7 +66,7 @@ public class SyntaxSupportTest extends AbstractJValidationsTestCase {
         }
     }
 
-    public static class ExtendsCallbackForTest extends CallbackForTest {
+    public static class ExtendsCallbackForTests extends CallbackForTests {
 
     }
 }

@@ -196,46 +196,52 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SyntaxSupport.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/java/jvalidations/SyntaxSupport.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="155" selection-start="1937" selection-end="1937" vertical-scroll-proportion="0.016438356">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DefaultValidationBuilder.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="DefaultValidationBuilder.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/java/jvalidations/DefaultValidationBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="35" selection-start="1964" selection-end="2018" vertical-scroll-proportion="0.32876712">
+            <state line="60" column="91" selection-start="2996" selection-end="3006" vertical-scroll-proportion="0.36164382">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ElseClause.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/java/jvalidations/ElseClause.java">
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/doc/jvalidations/index.html">
+          <provider editor-type-id="HtmlPreview">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="9" selection-start="163" selection-end="163" vertical-scroll-proportion="0.06575342">
+            <state line="27" column="0" selection-start="2313" selection-end="2313" vertical-scroll-proportion="0.4961715">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Validation.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/java/jvalidations/Validation.java">
+      <file leaf-file-name="build.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="0" selection-start="673" selection-end="673" vertical-scroll-proportion="0.36164382">
+            <state line="8" column="76" selection-start="362" selection-end="384" vertical-scroll-proportion="0.13445379">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Functional.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/java/jvalidations/functional/Functional.java">
+      <file leaf-file-name="SyntaxSupportTest.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/jvalidations/SyntaxSupportTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="0" selection-start="526" selection-end="526" vertical-scroll-proportion="0.18082191">
+            <state line="59" column="88" selection-start="2658" selection-end="2658" vertical-scroll-proportion="0.68767124">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Cookbook.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/doc/jvalidations/cookbook/Cookbook.html">
+          <provider editor-type-id="HtmlPreview">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -336,7 +342,7 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/mikehogan/projects/jvalidation2" />
+          <option name="myItemId" value="PsiDirectory:/Users/mikehogan/projects/jvalidations/trunk/jvalidations" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -350,19 +356,11 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/mikehogan/projects/jvalidation2" />
+          <option name="myItemId" value="PsiDirectory:/Users/mikehogan/projects/jvalidations/trunk/jvalidations" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/mikehogan/projects/jvalidation2/src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/mikehogan/projects/jvalidation2/src/test" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/mikehogan/projects/jvalidation2/src/test/jvalidations" />
+          <option name="myItemId" value="PsiDirectory:/Users/mikehogan/projects/jvalidations/trunk/jvalidations/src" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -376,11 +374,19 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/mikehogan/projects/jvalidation2" />
+          <option name="myItemId" value="PsiDirectory:/Users/mikehogan/projects/jvalidations/trunk/jvalidations" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/mikehogan/projects/jvalidation2/src" />
+          <option name="myItemId" value="PsiDirectory:/Users/mikehogan/projects/jvalidations/trunk/jvalidations/src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Users/mikehogan/projects/jvalidations/trunk/jvalidations/src/doc" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Users/mikehogan/projects/jvalidations/trunk/jvalidations/src/doc/jvalidations" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -394,19 +400,23 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/mikehogan/projects/jvalidation2" />
+          <option name="myItemId" value="PsiDirectory:/Users/mikehogan/projects/jvalidations/trunk/jvalidations" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/mikehogan/projects/jvalidation2/src" />
+          <option name="myItemId" value="PsiDirectory:/Users/mikehogan/projects/jvalidations/trunk/jvalidations/src" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/mikehogan/projects/jvalidation2/src/doc" />
+          <option name="myItemId" value="PsiDirectory:/Users/mikehogan/projects/jvalidations/trunk/jvalidations/src/doc" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/mikehogan/projects/jvalidation2/src/doc/jvalidations" />
+          <option name="myItemId" value="PsiDirectory:/Users/mikehogan/projects/jvalidations/trunk/jvalidations/src/doc/jvalidations" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Users/mikehogan/projects/jvalidations/trunk/jvalidations/src/doc/jvalidations/cookbook" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -493,6 +503,41 @@
         <option name="Make" value="true" />
       </method>
     </tempConfiguration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application" enabled="false" merge="false">
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method>
+        <option name="Make" value="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit" enabled="false" merge="false">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -514,41 +559,6 @@
       <method>
         <option name="Make" value="true" />
       </method>
-    </configuration>
-    <configuration default="true" type="Remote" factoryName="Remote">
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" value="javadebug" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="5005" />
-    </configuration>
-    <configuration default="true" type="Application" factoryName="Application" enabled="false" merge="false">
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
-      <envs />
-      <method>
-        <option name="Make" value="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
     </configuration>
     <configuration default="false" name="All Tests" type="JUnit" factoryName="JUnit" enabled="false" merge="false">
       <module name="jvalidation2" />
@@ -718,29 +728,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/java/jvalidations/Command.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="17" selection-start="40" selection-end="40" vertical-scroll-proportion="0.03287671">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/jvalidations/DefaultValidationBuilderTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="7" selection-start="2041" selection-end="2041" vertical-scroll-proportion="0.6410959">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/jvalidations/AbstractJValidationsTestCase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="0" selection-start="1265" selection-end="1265" vertical-scroll-proportion="0.33333334">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/jvalidations/validations/LengthOfValidationTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="36" column="0" selection-start="1741" selection-end="1741" vertical-scroll-proportion="0.48497853">
@@ -751,13 +738,6 @@
     <entry file="file://$PROJECT_DIR$/src/java/jvalidations/validations/GreaterThanValidation.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="0" selection-start="316" selection-end="316" vertical-scroll-proportion="0.2832618">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/jvalidations/SyntaxSupportTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="130" selection-start="1254" selection-end="1254" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -811,13 +791,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/jvalidations/SyntaxSupport.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="155" selection-start="1937" selection-end="1937" vertical-scroll-proportion="0.016438356">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/java/jvalidations/functional/Functors.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="17" column="41" selection-start="455" selection-end="455" vertical-scroll-proportion="0.21369863">
@@ -825,9 +798,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/jvalidations/SyntaxSupport.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="155" selection-start="1937" selection-end="1937" vertical-scroll-proportion="0.016438356">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/java/jvalidations/DefaultValidationBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="35" selection-start="1964" selection-end="2018" vertical-scroll-proportion="0.32876712">
+        <state line="60" column="91" selection-start="2996" selection-end="3006" vertical-scroll-proportion="0.36164382">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/doc/jvalidations/cookbook/Cookbook.html">
+      <provider editor-type-id="HtmlPreview">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/doc/jvalidations/index.html">
+      <provider editor-type-id="HtmlPreview">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="0" selection-start="2313" selection-end="2313" vertical-scroll-proportion="0.4961715">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="76" selection-start="362" selection-end="384" vertical-scroll-proportion="0.13445379">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/jvalidations/SyntaxSupportTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="59" column="88" selection-start="2658" selection-end="2658" vertical-scroll-proportion="0.68767124">
           <folding />
         </state>
       </provider>
