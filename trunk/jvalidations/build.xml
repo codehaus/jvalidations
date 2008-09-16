@@ -133,6 +133,7 @@
                 <arg line="../../../${path.src.doc}/jvalidations/cookbook/Cookbook.java"/>
             </exec>
             <copy file="${path.src.doc}/jvalidations/style.css" todir="${path.dist.doc}"/>
+            <copy file="${path.src.doc}/jvalidations/index.html" todir="${path.dist.doc}"/>
         </parallel>
     </target>
 
