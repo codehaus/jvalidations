@@ -3,6 +3,7 @@ package jvalidations.validations;
 import jvalidations.ParameterLookupForCallbackMethod;
 import jvalidations.Validation;
 import jvalidations.SyntaxSupport;
+import static jvalidations.SyntaxSupport.ValidationLogic.not;
 import static jvalidations.validations.AbstractParameterizedValidation.parameterLookup;
 
 public class EqualsValidation {
@@ -19,7 +20,7 @@ public class EqualsValidation {
     }
 
     public static Validation isNotEqualTo(final Object required) {
-        return SyntaxSupport.ValidationLogic.not(isEqualTo(required));
+        return not(isEqualTo(required));
     }
 
     public static ParameterLookupForCallbackMethod required() {

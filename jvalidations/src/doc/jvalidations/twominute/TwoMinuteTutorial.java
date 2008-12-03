@@ -101,8 +101,9 @@ public class TwoMinuteTutorial {
      * <br/>
      * <br/>
      * <b>validation_rule</b> is an instance of the JValidations interface <interface>Validation</interface>.  You will find many
-     * implementations of this interface available as static methods on classes in the package <package>jvalidations.validations</package> -
-     * <class>BlankValidation</class> for example has the static method <method>isNotBlank()</method>.
+     * implementations of this interface available as static methods on <class>SyntaxSupport.Validations</class>.  Alternatively, you can find
+     * the same static methods on each of the classes in the package <package>jvalidations.validations</package> -
+     * <class>BlankValidation</class> for example has the static methods <method>isBlank()</method> and <method>isNotBlank()</method>.
      * <br/>
      * <br/>
      * <b>else_clause</b> is an instance of the JValidations interface <interface>ElseClause</interface>.  The <b>else_clause</b> states

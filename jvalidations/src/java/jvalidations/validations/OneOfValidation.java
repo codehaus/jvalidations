@@ -2,11 +2,12 @@ package jvalidations.validations;
 
 import jvalidations.Validation;
 import jvalidations.SyntaxSupport;
+import static jvalidations.SyntaxSupport.ValidationLogic.not;
 
 import java.util.Collection;
 
 public class OneOfValidation {
-    public static Validation isOneOf(final Collection<? extends Object> possibilities) {
+    public static Validation isOneOf(final Collection possibilities) {
         return new AbstractParameterizedValidation() {
             {
                 registerParameter("possibilities", possibilities);
@@ -18,7 +19,7 @@ public class OneOfValidation {
         };
     }
 
-    public static Validation isNotOneOf(final Collection<? extends Object> possibilities) {
-        return SyntaxSupport.ValidationLogic.not(isOneOf(possibilities));
+    public static Validation isNotOneOf(final Collection possibilities) {
+        return not(isOneOf(possibilities));
     }
 }
