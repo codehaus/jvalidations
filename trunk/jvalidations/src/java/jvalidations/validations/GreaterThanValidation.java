@@ -2,6 +2,7 @@ package jvalidations.validations;
 
 import jvalidations.Validation;
 import jvalidations.SyntaxSupport;
+import static jvalidations.SyntaxSupport.ValidationLogic.not;
 
 public class GreaterThanValidation extends AbstractSizeValidation {
 
@@ -18,6 +19,6 @@ public class GreaterThanValidation extends AbstractSizeValidation {
     }
 
     public static Validation isNotGreaterThan(Number n) {
-        return SyntaxSupport.ValidationLogic.not(isGreaterThan(n));
+        return not(isGreaterThan(n));
     }
 }

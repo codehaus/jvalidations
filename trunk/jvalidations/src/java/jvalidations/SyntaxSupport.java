@@ -14,12 +14,14 @@ import static jvalidations.functional.Functional.find;
 import static jvalidations.functional.Functors.declaredMethod;
 import static jvalidations.functional.Functors.superClass;
 import static jvalidations.validations.TrueValidation.isTrue;
+import jvalidations.validations.*;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
+import java.util.Collection;
 
 public class SyntaxSupport {
     public static ElseClause _else(final Object report,
@@ -28,11 +30,8 @@ public class SyntaxSupport {
     ) {
         return new ElseClause() {
             public void execute(Object candidate, Cardinality cardinality, Validation validation, int numValid) {
-                Class[] types = types(candidate, cardinality, validation, parameterLookupForCallbackMethod);
-                Object[] values = parameters(candidate, cardinality, validation, numValid, parameterLookupForCallbackMethod);
                 try {
-                    Method method = find(declaredMethod(callbackMethodName, types), report.getClass(), superClass());
-                    method.invoke(report, values);
+                    executeWithoutExceptionHandling(candidate, cardinality, validation, numValid);
                 } catch (IllegalAccessException e) {
                     throw new RuntimeException(e);
                 } catch (InvocationTargetException e) {
@@ -42,6 +41,17 @@ public class SyntaxSupport {
                     }
                     throw new RuntimeException(targetException);
                 }
+            }
+
+            private void executeWithoutExceptionHandling(Object candidate,
+                                                         Cardinality cardinality,
+                                                         Validation validation,
+                                                         int numValid)
+                    throws IllegalAccessException, InvocationTargetException {
+                Class[] types = types(candidate, cardinality, validation, parameterLookupForCallbackMethod);
+                Object[] values = parameters(candidate, cardinality, validation, numValid, parameterLookupForCallbackMethod);
+                Method method = find(declaredMethod(callbackMethodName, types), report.getClass(), superClass());
+                method.invoke(report, values);
             }
 
             public Class[] types(Object candidate,
@@ -264,6 +274,105 @@ public class SyntaxSupport {
                     return first(validations, _parameter(name), notNull(), null);
                 }
             };
+        }
+    }
+
+    public static class Validations {
+
+        public static Validation isNull() {
+            return NullValidation.isNull();
+        }
+
+        public static Validation isNotNull() {
+            return NullValidation.isNotNull();
+        }
+
+        public static Validation isBlank() {
+            return BlankValidation.isBlank();
+        }
+
+        public static Validation isNotBlank() {
+            return BlankValidation.isNotBlank();
+        }
+
+        public static Validation isEqualTo(Object required) {
+            return EqualsValidation.isEqualTo(required);
+        }
+
+        public static Validation isNotEqualTo(Object required) {
+            return EqualsValidation.isNotEqualTo(required);
+        }
+
+        public static Validation isFalse() {
+            return FalseValidation.isFalse();
+        }
+
+        public static Validation isNotFalse() {
+            return FalseValidation.isNotFalse();
+        }
+
+        public static Validation isTrue() {
+            return TrueValidation.isTrue();
+        }
+
+        public static Validation isNotTrue() {
+            return TrueValidation.isNotTrue();
+        }
+
+        public static Validation isOfFormat(String format) {
+            return FormatOfValidation.isOfFormat(format);
+        }
+
+        public static Validation isNotOfFormat(String format) {
+            return FormatOfValidation.isNotOfFormat(format);
+        }
+
+        public static Validation isGreaterThan(Number n) {
+            return GreaterThanValidation.isGreaterThan(n);
+        }
+
+        public static Validation isNotGreaterThan(Number n) {
+            return GreaterThanValidation.isNotGreaterThan(n);
+        }
+
+        public static Validation isLessThan(Number n) {
+            return LessThanValidation.isLessThan(n);
+        }
+
+        public static Validation isNotLessThan(Number n) {
+            return LessThanValidation.isNotLessThan(n);
+        }
+
+        public static Validation isLongerThan(int limit) {
+            return LengthOfValidation.isLongerThan(limit);
+        }
+
+        public static Validation isNotLongerThan(int limit) {
+            return LengthOfValidation.isNotLongerThan(limit);
+        }
+
+        public static Validation isShorterThan(int limit) {
+            return LengthOfValidation.isShorterThan(limit);
+        }
+
+        public static Validation isNotShorterThan(int limit) {
+            return LengthOfValidation.isNotShorterThan(limit);
+        }
+
+        public static Validation isBetween(int min, int max) {
+            return LengthOfValidation.isBetween(min,max);
+        }
+
+        public static Validation isNotBetween(int min, int max) {
+            return LengthOfValidation.isNotBetween(min,max);
+        }
+
+        public static Validation isOneOf(Collection possibilities) {
+            return OneOfValidation.isOneOf(possibilities);
+        }
+
+        public static Validation isNotOneOf(Collection possibilities) {
+            return OneOfValidation.isNotOneOf(possibilities);
         }
     }
 

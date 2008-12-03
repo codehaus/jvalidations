@@ -5,14 +5,18 @@ import jedi.functional.Filter;
 import static jedi.functional.FirstOrderLogic.intersection;
 import static jedi.functional.FirstOrderLogic.not;
 import jedi.functional.Functor;
+import jedi.functional.FirstOrderLogic;
 import static jvalidations.Cardinality.Functors.nested;
 import static jvalidations.Condition.Functors._check;
 import static jvalidations.DefaultValidationBuilder.ConditionableCommand.hasOneOfTheseTags;
 import static jvalidations.functional.Filters.isFalse;
+import static jvalidations.functional.Filters.isTrue;
 import static jvalidations.functional.Functional.find;
 import static jvalidations.functional.Functional.first;
+import static jvalidations.functional.Functional.all;
 import static jvalidations.functional.Functors.declaredMethod;
 import static jvalidations.functional.Functors.superClass;
+import jvalidations.functional.Filters;
 import static jvalidations.SyntaxSupport.Cardinalities.exactly;
 
 import static java.lang.Boolean.TRUE;
@@ -20,6 +24,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collection;
+import java.util.Iterator;
 
 public class DefaultValidationBuilder implements ValidationSyntax {
     private List<ConditionableCommand> commands = new ArrayList<ConditionableCommand>();
@@ -67,11 +73,11 @@ public class DefaultValidationBuilder implements ValidationSyntax {
                     }
                 }
                 return numValid;
-            }
-
+            }            
         };
         return addCommand(command);
     }
+
 
     private Cardinality getCardinalityInRightNestingContext(Cardinality cardinality) {
         for (Functor<Cardinality, Cardinality> nestingFunctor : nestingFunctors) {
@@ -94,6 +100,13 @@ public class DefaultValidationBuilder implements ValidationSyntax {
                                 associated.getClass(),
                                 superClass());
                 DefaultValidationBuilder nestedBuilder = nest(nested(accessorObj.name()));
+                return callNestedBuildValidationMethod(associated, report, method, nestedBuilder);
+            }
+
+            private DefaultValidationBuilder callNestedBuildValidationMethod(Object associated,
+                                                                             Object report,
+                                                                             Method method,
+                                                                             DefaultValidationBuilder nestedBuilder) {
                 try {
                     method.invoke(associated, nestedBuilder, report);
                 } catch (IllegalAccessException e) {
@@ -103,10 +116,12 @@ public class DefaultValidationBuilder implements ValidationSyntax {
                 }
                 return nestedBuilder;
             }
+            
 
         };
         return addCommand(command);
     }
+
 
 
     private DefaultValidationBuilder nest(Functor<Cardinality, Cardinality> functor) {
@@ -114,16 +129,18 @@ public class DefaultValidationBuilder implements ValidationSyntax {
     }
 
     public boolean validate(Object domainObject) {
-        boolean allPassed = true;
-        for (ConditionableCommand command : commands) {
-            if (conditionsOk(command)) {
-                allPassed &= command.execute(domainObject);
-                if (!allPassed && stopOnFirstFailure) {
-                    return false;
-                }
-            }
+        if(stopOnFirstFailure) {
+            return first(commands, isHappyWith(domainObject), isFalse(), Boolean.TRUE);
         }
-        return allPassed;
+        return all(commands, isHappyWith(domainObject), isTrue());
+    }
+
+    private Functor<ConditionableCommand, Boolean> isHappyWith(final Object domainObject) {
+        return new Functor<ConditionableCommand, Boolean>() {
+            public Boolean execute(ConditionableCommand command) {
+                return conditionsOk(command) && command.execute(domainObject);
+            }
+        };
     }
 
     private Conditionable addCommand(Command command) {

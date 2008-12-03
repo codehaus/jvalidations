@@ -15,13 +15,25 @@ public class MethodAccessor extends AbstractAccessor{
 
     public Object value(Object candidate) {
         try {
-            Method method = find(declaredMethod(name), candidate.getClass(), superClass());
-            method.setAccessible(true);
-            return method.invoke(candidate);
+            return invokeMethod(candidate);
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         } catch (InvocationTargetException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private Object invokeMethod(Object candidate) throws IllegalAccessException, InvocationTargetException {
+        Method method = findMethodOrDie(candidate);
+        method.setAccessible(true);
+        return method.invoke(candidate);
+    }
+
+    private Method findMethodOrDie(Object candidate) {
+        Method method = find(declaredMethod(name), candidate.getClass(), superClass());
+        if(method == null) {
+            throw new RuntimeException("Could not find method '" + name + "' in '" + candidate.getClass() + "'");
+        }
+        return method;
     }
 }

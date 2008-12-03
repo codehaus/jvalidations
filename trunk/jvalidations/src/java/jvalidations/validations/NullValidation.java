@@ -2,6 +2,7 @@ package jvalidations.validations;
 
 import jvalidations.Validation;
 import jvalidations.SyntaxSupport;
+import static jvalidations.SyntaxSupport.ValidationLogic.not;
 
 public class NullValidation {
     public static Validation isNull() {
@@ -13,6 +14,6 @@ public class NullValidation {
     }
 
     public static Validation isNotNull() {
-        return SyntaxSupport.ValidationLogic.not(isNull());
+        return not(isNull());
     }
 }
