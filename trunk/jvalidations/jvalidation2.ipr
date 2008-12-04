@@ -691,12 +691,15 @@
     <option name="GENERATE_IIOP_STUBS" value="false" />
     <option name="ADDITIONAL_OPTIONS_STRING" value="" />
   </component>
+  <component name="SvnBranchConfigurationManager">
+    <option name="myVersion" value="123" />
+  </component>
   <component name="TestDoxConfiguration">
     <option name="createTestIfMissing" value="true" />
     <option name="deletePackageOccurrences" value="true" />
   </component>
   <component name="VcsDirectoryMappings">
-    <mapping directory="" vcs="" />
+    <mapping directory="" vcs="svn" />
   </component>
   <component name="WebServicesPlugin" addRequiredLibraries="true" />
 </project>
