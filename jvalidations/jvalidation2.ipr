@@ -53,6 +53,7 @@
     <option name="ADDITIONAL_OPTIONS_STRING" value="" />
     <option name="MAXIMUM_HEAP_SIZE" value="128" />
   </component>
+  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false" />
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
   </component>
@@ -87,7 +88,6 @@
           <option name="SUGGEST_NULLABLE_ANNOTATIONS" value="false" />
           <option name="DONT_REPORT_TRUE_ASSERT_STATEMENTS" value="false" />
         </inspection_tool>
-        <inspection_tool class="XmlWrongClosingTagName" level="ERROR" enabled="false" />
         <inspection_tool class="SpringAopWarningsInspection" level="WARNING" enabled="false" />
         <inspection_tool class="EjbErrorInspection" level="ERROR" enabled="false" />
         <inspection_tool class="CssUnusedSymbolInspection" level="WARNING" enabled="false" />
@@ -466,11 +466,6 @@
         <inspection_tool class="RedundantArrayCreation" level="WARNING" enabled="false" />
         <inspection_tool class="CheckImageSize" level="WARNING" enabled="false" />
         <inspection_tool class="EmptyTryBlock" level="WARNING" enabled="false" />
-        <inspection_tool class="ComponentRegistrationProblems" level="ERROR" enabled="false">
-          <option name="CHECK_PLUGIN_XML" value="true" />
-          <option name="CHECK_JAVA_CODE" value="true" />
-          <option name="CHECK_ACTIONS" value="true" />
-        </inspection_tool>
         <inspection_tool class="PointlessBooleanExpressionJS" level="WARNING" enabled="false" />
         <inspection_tool class="CssUnitlessNumber" level="WARNING" enabled="false" />
         <inspection_tool class="ConstantConditionalExpression" level="WARNING" enabled="false" />
@@ -482,7 +477,6 @@
         <inspection_tool class="UnusedParameters" level="WARNING" enabled="false" />
         <inspection_tool class="DuplicateMnemonic" level="WARNING" enabled="false" />
         <inspection_tool class="dependsOnMethodTestNG" level="WARNING" enabled="false" />
-        <inspection_tool class="JSShowOverridingMarkers" level="INFO" enabled="false" />
         <inspection_tool class="ContinueOrBreakFromFinallyBlockJS" level="WARNING" enabled="false" />
         <inspection_tool class="UnusedReturnValue" level="WARNING" enabled="false" />
         <inspection_tool class="SpringBeanDepedencyCheckInspection" level="ERROR" enabled="false" />
@@ -671,13 +665,16 @@
       </item>
     </group>
   </component>
+  <component name="ProjectDetails">
+    <option name="projectName" value="jvalidation2" />
+  </component>
   <component name="ProjectFileVersion" converted="true" />
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/jvalidation2.iml" filepath="$PROJECT_DIR$/jvalidation2.iml" />
     </modules>
   </component>
-  <component name="ProjectRootManager" version="2" assert-keyword="true" jdk-15="true" project-jdk-name="1.5" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_5" assert-keyword="true" jdk-15="true" project-jdk-name="1.5" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
   <component name="ResourceManagerContainer">
@@ -693,6 +690,10 @@
     <option name="GENERATE_NO_WARNINGS" value="false" />
     <option name="GENERATE_IIOP_STUBS" value="false" />
     <option name="ADDITIONAL_OPTIONS_STRING" value="" />
+  </component>
+  <component name="TestDoxConfiguration">
+    <option name="createTestIfMissing" value="true" />
+    <option name="deletePackageOccurrences" value="true" />
   </component>
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="" />

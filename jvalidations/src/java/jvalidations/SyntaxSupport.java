@@ -51,6 +51,9 @@ public class SyntaxSupport {
                 Class[] types = types(candidate, cardinality, validation, parameterLookupForCallbackMethod);
                 Object[] values = parameters(candidate, cardinality, validation, numValid, parameterLookupForCallbackMethod);
                 Method method = find(declaredMethod(callbackMethodName, types), report.getClass(), superClass());
+                if(method == null) {
+                    throw new RuntimeException("Could not find method '"+callbackMethodName+"' in '" + report.getClass() +"'");
+                }
                 method.invoke(report, values);
             }
 
@@ -231,6 +234,18 @@ public class SyntaxSupport {
 
                 public Object value(Object candidate, Cardinality cardinality, Validation validation, int numValid) {
                     return cardinality.getAccessors().get(0).name();
+                }
+            };
+        }
+
+        public static ParameterLookupForCallbackMethod string(final String value) {
+            return new ParameterLookupForCallbackMethod() {
+                public Class type(Object candidate, Cardinality cardinality, Validation validation) {
+                    return String.class;
+                }
+
+                public Object value(Object candidate, Cardinality cardinality, Validation validation, int numValid) {
+                    return value;
                 }
             };
         }
