@@ -49,6 +49,22 @@ public class SyntaxSupportTest extends AbstractJValidationsTestCase {
         assertTrue(callback.wasCalled());
     }
 
+    public void test_elseThrowsAnInformativeExceptionIfMethodNotFound() {
+        ElseClause clause = _else(new Object(), "this method does not exist");
+        try {
+            clause.execute(new Object(), null,null,0);
+            fail("Did not throw nice exception");
+        } catch (RuntimeException e) {
+            assertEquals("Could not find method 'this method does not exist' in '" + Object.class +"'", e.getMessage());
+        }
+    }
+
+    public void testStringParameterWorksForStrings() {
+        String value = "This is a string constant";
+        ParameterLookupForCallbackMethod param = SyntaxSupport.Parameters.string(value);
+        assertEquals(String.class, param.type(null,null,null));
+        assertEquals(value, param.value(null,null,null,0));
+    }
 
     public static interface Callback {
         void callbackMethod(String fieldName, int requiredCount, int actualCount);
