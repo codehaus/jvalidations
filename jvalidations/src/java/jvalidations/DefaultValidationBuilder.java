@@ -5,7 +5,6 @@ import jedi.functional.Filter;
 import static jedi.functional.FirstOrderLogic.intersection;
 import static jedi.functional.FirstOrderLogic.not;
 import jedi.functional.Functor;
-import jedi.functional.FirstOrderLogic;
 import static jvalidations.Cardinality.Functors.nested;
 import static jvalidations.Condition.Functors._check;
 import static jvalidations.DefaultValidationBuilder.ConditionableCommand.hasOneOfTheseTags;
@@ -16,7 +15,6 @@ import static jvalidations.functional.Functional.first;
 import static jvalidations.functional.Functional.all;
 import static jvalidations.functional.Functors.declaredMethod;
 import static jvalidations.functional.Functors.superClass;
-import jvalidations.functional.Filters;
 import static jvalidations.SyntaxSupport.Cardinalities.exactly;
 
 import static java.lang.Boolean.TRUE;
@@ -24,12 +22,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Collection;
-import java.util.Iterator;
 
 public class DefaultValidationBuilder implements ValidationSyntax {
     private List<ConditionableCommand> commands = new ArrayList<ConditionableCommand>();
-    private List<Filter<ConditionableCommand>> conditions = new ArrayList<Filter<ConditionableCommand>>();
     private List<Filter<ConditionableCommand>> tagConditions = new ArrayList<Filter<ConditionableCommand>>();
     private final List<Functor<Cardinality, Cardinality>> nestingFunctors =
             new ArrayList<Functor<Cardinality, Cardinality>>();
@@ -138,7 +133,7 @@ public class DefaultValidationBuilder implements ValidationSyntax {
     private Functor<ConditionableCommand, Boolean> isHappyWith(final Object domainObject) {
         return new Functor<ConditionableCommand, Boolean>() {
             public Boolean execute(ConditionableCommand command) {
-                return conditionsOk(command) && command.execute(domainObject);
+                return !tagConditionsOk(command) || command.execute(domainObject);
             }
         };
     }
@@ -149,8 +144,8 @@ public class DefaultValidationBuilder implements ValidationSyntax {
         return conditionableCommand;
     }
 
-    private boolean conditionsOk(ConditionableCommand command) {
-        return conditionsOk(command, conditions) && conditionsOk(command, tagConditions);
+    private boolean tagConditionsOk(ConditionableCommand command) {
+        return conditionsOk(command, tagConditions);
     }
 
     private boolean conditionsOk(ConditionableCommand command,

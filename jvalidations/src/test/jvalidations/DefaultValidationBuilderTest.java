@@ -46,8 +46,8 @@ public class DefaultValidationBuilderTest extends MockObjectTestCase {
     public void testCanStateCardinalityForValidationRules() {
         Mock mock = mock(Cardinality.class);
         mock.expects(once()).method("getAccessors").will(returnValue(list(new FieldAccessor("name"), new FieldAccessor("email"))));
-        mock.expects(once()).method("requiresMoreChecks").with(eq(0),eq(2)).will(returnValue(true));
-        mock.expects(once()).method("requiresMoreChecks").with(eq(0),eq(1)).will(returnValue(true));
+        mock.expects(once()).method("requiresMoreChecks").with(eq(0), eq(2)).will(returnValue(true));
+        mock.expects(once()).method("requiresMoreChecks").with(eq(0), eq(1)).will(returnValue(true));
         mock.expects(once()).method("happyWith").with(eq(0)).will(returnValue(false));
         final Cardinality cardinality = (Cardinality) mock.proxy();
         DomainObject domainObject = new DomainObject<ValidationReport>("mike", "mike@email.com") {
@@ -91,13 +91,13 @@ public class DefaultValidationBuilderTest extends MockObjectTestCase {
     }
 
     public void testRemovalOfTagsWorksForNestedObjects() {
-        NestedDomainObject innermostNested = new NestedDomainObject<ValidationReport>("over there"){
+        NestedDomainObject innermostNested = new NestedDomainObject<ValidationReport>("over there") {
             public void buildValidation(ValidationSyntax validates, ValidationReport report) {
                 validates.that("location", (Validation) newDummy(Validation.class), _else(report, "expectedCallback", fieldName())).tags("tag");
             }
         };
 
-        NestedDomainObject outermostNested = new NestedDomainObject<ValidationReport>(innermostNested){
+        NestedDomainObject outermostNested = new NestedDomainObject<ValidationReport>(innermostNested) {
             public void buildValidation(ValidationSyntax validates, ValidationReport report) {
                 validates.that("location", (Validation) newDummy(Validation.class), _else(report, "expectedCallback", fieldName())).tags("tag");
                 validates.associated("nested", report);
@@ -108,8 +108,23 @@ public class DefaultValidationBuilderTest extends MockObjectTestCase {
                 validates.associated("nested", report);
             }
         };
-        doValidation(domainObject, mock(ValidationReport.class),"tag");
+        doValidation(domainObject, mock(ValidationReport.class), "tag");
+    }
 
+    public void testStopOnFirstFailureDoesNotCountFirstTagRemovalAsFailure() {
+        DomainObject domainObject = new DomainObject<ValidationReport>("mike", "email") {
+            public void buildValidation(ValidationSyntax validates, ValidationReport report) {
+                validates.that(SyntaxSupport.Cardinalities.atLeast(1).of("name"), (Validation) newDummy(Validation.class), _else(report, "unexpectedCallback")).on(SyntaxSupport.Conditions.condition("name",SyntaxSupport.Validations.isNotNull())).tags("some tag");
+                validates.that("email", willFailValidation("email"), _else(report, "expectedCallback", SyntaxSupport.Parameters.fieldName()));
+            }
+        };
+        DefaultValidationBuilder builder = new DefaultValidationBuilder();
+        Mock mockReport = mock(ValidationReport.class);
+        mockReport.expects(once()).method("expectedCallback").with(eq("email"));
+        domainObject.buildValidation(builder, mockReport.proxy());
+        builder.removeTags("some tag");
+        builder.stopOnFirstFailure();
+        builder.validate(domainObject);
     }
 
     public void testCanMixConditionsAndTags() {
@@ -133,12 +148,12 @@ public class DefaultValidationBuilderTest extends MockObjectTestCase {
     }
 
     public void testCanValidateAssociatedObjects() {
-        NestedDomainObject innermostNested = new NestedDomainObject<ValidationReport>("over there"){
+        NestedDomainObject innermostNested = new NestedDomainObject<ValidationReport>("over there") {
             public void buildValidation(ValidationSyntax validates, ValidationReport report) {
                 validates.that("location", willFailValidation("over there"), _else(report, "expectedCallback", fieldName()));
             }
         };
-        NestedDomainObject outermostNested = new NestedDomainObject<ValidationReport>(innermostNested){
+        NestedDomainObject outermostNested = new NestedDomainObject<ValidationReport>(innermostNested) {
             public void buildValidation(ValidationSyntax validates, ValidationReport report) {
                 validates.associated("nested", report);
             }
@@ -148,11 +163,11 @@ public class DefaultValidationBuilderTest extends MockObjectTestCase {
                 validates.associated("nested", report);
             }
         };
-        doValidation(domainObject, validationReport("expectedCallback",eq("nested.nested.location")));
+        doValidation(domainObject, validationReport("expectedCallback", eq("nested.nested.location")));
     }
 
     public void testCanFailEarlyWithoutAssociatedObjects() {
-        DomainObject domainObject = new DomainObject("name","email"){
+        DomainObject domainObject = new DomainObject("name", "email") {
             public void buildValidation(ValidationSyntax validates, Object report) {
                 validates.that("name", willFailValidation("name"), _else(report, "expectedCallback"));
                 validates.that("email", (Validation) newDummy(Validation.class), _else(report, "unexpectedCallback"));
@@ -164,12 +179,12 @@ public class DefaultValidationBuilderTest extends MockObjectTestCase {
     private void doFailEarlyValidation(DomainObject domainObject, Object validationReport) {
         DefaultValidationBuilder builder = new DefaultValidationBuilder();
         builder.stopOnFirstFailure();
-        domainObject.buildValidation(builder,validationReport);
+        domainObject.buildValidation(builder, validationReport);
         builder.validate(domainObject);
     }
 
     public void testCanFailEarlyWithAssociatedObjects() {
-        NestedDomainObject nested = new NestedDomainObject<ValidationReport>("over there"){
+        NestedDomainObject nested = new NestedDomainObject<ValidationReport>("over there") {
             public void buildValidation(ValidationSyntax validates, ValidationReport report) {
                 validates.that("location", willFailValidation("over there"), _else(report, "expectedCallback"));
                 validates.that("location", (Validation) newDummy(Validation.class), _else(report, "unexpectedCallback"));
@@ -185,7 +200,7 @@ public class DefaultValidationBuilderTest extends MockObjectTestCase {
     }
 
     public void testAssociatedCanDealWillNullReferences() {
-        NestedDomainObject nested = new NestedDomainObject<ValidationReport>((NestedDomainObject)null){
+        NestedDomainObject nested = new NestedDomainObject<ValidationReport>((NestedDomainObject) null) {
             public void buildValidation(ValidationSyntax validates, ValidationReport report) {
                 validates.associated("nested", report);
             }
@@ -204,7 +219,7 @@ public class DefaultValidationBuilderTest extends MockObjectTestCase {
         return report;
     }
 
-    private Mock validationReport(String ...expectedCallbackMethods) {
+    private Mock validationReport(String... expectedCallbackMethods) {
         Mock report = mock(ValidationReport.class);
         for (String expectedCallbackMethod : expectedCallbackMethods) {
             report.expects(once()).method(expectedCallbackMethod);
@@ -224,7 +239,7 @@ public class DefaultValidationBuilderTest extends MockObjectTestCase {
         return (ParameterLookupForCallbackMethod) parameter.proxy();
     }
 
-    private void doValidation(DomainObject domainObject, Mock report, String ...tagsToRemove) {
+    private void doValidation(DomainObject domainObject, Mock report, String... tagsToRemove) {
         DefaultValidationBuilder builder = new DefaultValidationBuilder();
         domainObject.buildValidation(builder, report.proxy());
         builder.removeTags(tagsToRemove);
@@ -247,15 +262,15 @@ public class DefaultValidationBuilderTest extends MockObjectTestCase {
         };
     }
 
-    private  Validation willFailValidation(Object ...value) {
+    private Validation willFailValidation(Object... value) {
         return validation(false, value);
     }
 
-    private Validation willSucceedValidation(Object ...value) {
+    private Validation willSucceedValidation(Object... value) {
         return validation(true, value);
     }
 
-    private  Validation validation(final boolean result, Object ...values) {
+    private Validation validation(final boolean result, Object... values) {
         Mock mock = mock(Validation.class);
         for (Object value : values) {
             mock.expects(atLeastOnce()).method("check").with(eq(value)).will(returnValue(result));
@@ -297,7 +312,7 @@ public class DefaultValidationBuilderTest extends MockObjectTestCase {
         }
 
         public NestedDomainObject(NestedDomainObject nested) {
-            this.nested=nested;
+            this.nested = nested;
         }
     }
 
@@ -305,7 +320,7 @@ public class DefaultValidationBuilderTest extends MockObjectTestCase {
         void unexpectedCallback();
 
         void expectedCallback();
-        
+
         void anotherExpectedCallback();
 
         void expectedCallback(String parameter);
