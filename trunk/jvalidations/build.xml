@@ -2,7 +2,7 @@
 
     <target name="init">
         <property name="component.name" value="jvalidations"/>
-        <property name="component.version" value="0.5.0"/>
+        <property name="component.version" value="0.5"/>
 
         <property name="path.build" value="build"/>
         <property name="path.reports" value="build/reports"/>
@@ -38,6 +38,10 @@
             <path location="${path.build.classes}"/>
             <path location="${path.dist.classes}"/>
         </path>
+
+        <tstamp>
+            <format property="date.today" pattern="d-MMMM-yyyy" locale="en,UK"/>
+        </tstamp>
     </target>
 
     <target name="make_directories" depends="init">
@@ -133,7 +137,12 @@
                 <arg line="../../../${path.src.doc}/jvalidations/cookbook/Cookbook.java"/>
             </exec>
             <copy file="${path.src.doc}/jvalidations/style.css" todir="${path.dist.doc}"/>
-            <copy file="${path.src.doc}/jvalidations/index.html" todir="${path.dist.doc}"/>
+            <copy file="${path.src.doc}/jvalidations/index.html" todir="${path.dist.doc}" filtering="true" overwrite="yes">
+                <filterset>
+                    <filter token="version.number" value="${component.version}"/>
+                    <filter token="release.date" value="${date.today}"/>
+                </filterset>
+            </copy>
         </parallel>
     </target>
 

@@ -19,9 +19,20 @@ h1 {
 }
 
 #main {
-  width: 55em;
+  width: 70em;
   padding: 0;
   margin: 0 auto;
+}
+
+#explanation {
+    width: 53em;
+    float:right;
+}
+
+#menu {
+    width: 15em;
+    float:left;
+    background-color: darkseagreen;
 }
 
 .domaincode {

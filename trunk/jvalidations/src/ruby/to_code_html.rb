@@ -52,13 +52,51 @@ end
 
 class WriteHtmlOutputFile
   def initialize(name)
-    @file=File.open("#{name}.html", "w")
+    @name=name
+    @menu_lines=[]
+    @body_lines=[]
     @processing_code_block=false
     @found_first_line_with_content_aleady=false
     @amount_of_indent_to_remove=0
-    write('<link rel="stylesheet" href="../style.css" type="text/css">')
-    write("<div id='main'>")
-    write("<h2>#{name}</h2>")
+  end
+
+  def write_header(file)
+    write_to_file(file,'<link rel="stylesheet" href="../style.css" type="text/css">')
+    write_to_file(file,"<div id='main'>")
+    write_to_file(file,"<h2>#{@name}</h2>")
+  end
+
+  def finish
+    file=File.open("#{@name}.html", "w")
+
+    write_header(file)
+    write_menu(file)
+    write_body(file)
+    write_footer(file)
+
+    file.close
+  end
+
+  def write_menu(file)
+    write_to_file(file,"<ul>")
+    @menu_lines.each do |line|
+      write_to_file(file,"<li><a href=\"##{line}\">#{line}</a></li>")
+    end
+    write_to_file(file,"</ul>")
+  end
+
+  def write_body(file)
+    @body_lines.each do |line|
+      write_to_file(file,line)
+    end
+  end
+
+  def write_footer(file)
+    write_to_file(file,"</div id='main'>")
+  end
+
+  def write(line)
+    @body_lines << line
   end
   
   def process_line(line)
@@ -70,8 +108,7 @@ class WriteHtmlOutputFile
       end
       CommentProcessor.new(self, line)
     elsif line=~ /\/\*END\*\//
-      write("</div id='main'>")
-      @file.close
+      finish
       FinishedProcessor.new
     else
       if(!ignore?(line))
@@ -97,6 +134,8 @@ class WriteHtmlOutputFile
   
   def write_section_header(line)
     line =~ /public static class Section_(.*) \{/
+    @menu_lines << $1
+    write("<a name='#{$1}'/>")
     write("<div class='section'>#{$1}</div>")
   end
   
@@ -118,12 +157,11 @@ class WriteHtmlOutputFile
   def markup(line)
     line=line.sub("public static class","public class")
     line.gsub("<","&lt;").gsub(">","&gt;")
-
   end
   
-  def write(line)
+  def write_to_file(file,line)
     if(!ignore?(line))
-      @file << line 
+      file << line
     end
   end
   
