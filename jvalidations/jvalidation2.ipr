@@ -33,6 +33,9 @@
       <entry name="?*.tld" />
     </wildcardResourcePatterns>
   </component>
+  <component name="CopyrightManager" default="">
+    <module2copyright />
+  </component>
   <component name="DependenciesAnalyzeManager">
     <option name="myForwardDirection" value="false" />
   </component>
@@ -269,7 +272,6 @@
               <list size="0" />
             </value>
           </option>
-          <option name="ADD_EJB_TO_ENTRIES" value="true" />
           <option name="ADD_JUNIT_TO_ENTRIES" value="true" />
           <option name="ADD_TESTNG_TO_ENTRIES" value="true" />
         </inspection_tool>
@@ -668,7 +670,13 @@
   <component name="ProjectDetails">
     <option name="projectName" value="jvalidation2" />
   </component>
-  <component name="ProjectFileVersion" converted="true" />
+  <component name="ProjectFileVersion" converted="true">
+    <converter id="ror-modules" />
+    <converter id="SelenaRunConfToDiana" />
+  </component>
+  <component name="ProjectKey">
+    <option name="state" value="https://svn.codehaus.org/jvalidations/trunk/jvalidations/jvalidation2.ipr" />
+  </component>
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/jvalidation2.iml" filepath="$PROJECT_DIR$/jvalidation2.iml" />
@@ -692,7 +700,8 @@
     <option name="ADDITIONAL_OPTIONS_STRING" value="" />
   </component>
   <component name="SvnBranchConfigurationManager">
-    <option name="myVersion" value="123" />
+    <option name="myVersion" value="124" />
+    <option name="mySupportsUserInfoFilter" value="true" />
   </component>
   <component name="TestDoxConfiguration">
     <option name="createTestIfMissing" value="true" />

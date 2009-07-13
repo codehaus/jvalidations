@@ -290,6 +290,19 @@ public class Cookbook {
          */
     }//ignore
 
+    public static class Section_ExternalizingTheDefinitionOfValidationRules {
+        /**
+         * This is something that came up recently only in discussion and has not been thought through, spiked
+         * or implemented :-)  But its not uncommon for a need to arise to externalize validation rules for a business
+         * object.  While one of the goals of JValidations is to encapsulate the validation rules for an object, it is
+         * worthwhile considering if validation rules for an object could be externalised through the use of OGNL say.
+         * It would be possible to use the JValidation syntax in that OGNL file, and have the domain object load its
+         * definition from the OGNL file and that might solve the problem.  But this is an exercise for another day, and
+         * its just noted here for interest.
+         */
+
+    }//ignore
+
     public static class Section_PuttingThingsTogetherToDefineYourOwnValidationCallbackNamingScheme {
     }//ignore
     /*END*/

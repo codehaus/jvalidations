@@ -10,18 +10,72 @@
 </head>
 <body>
 <div id="main">
-    <h1>JValidations - Java validation API</h1>
+    <h1 style="text-align:center;">JValidations - Java validation API</h1>
+    <br/>
 
-    <p>JValidations is a Java API for expressing and executing validation rules for your objects. For example:</p>
+    <div id="explanation">
+        <p>JValidations is a framework to express and exercise validation rules for java objects. Its defining characteristics
+            are:</p>
 
-    <pre class="code">validates.that("emailAddress", isNotBlank(),_else(report, "missingContactDetails"));</pre>
+        <ul>
 
-    <p>If you want to download it and try it, go <a href="http://dist.codehaus.org/jvalidations/">here</a></p>
+            <li>validation is performed by the objects themselves, not in external "validator" classes, preserving
+                encapsulation
+            </li>
+            <li>validation rules are expressed in declarative java, not in XML or annotations or what have you</li>
+            <li>how a validation failure is handled is entirely up to the caller through the use of callback interfaces</li>
+            <li>extensible in that custom validations can be coded, and the DSL syntax can be modified to suit your needs</li>
+        </ul>
 
-    <p>If you want a quick (it's titled "Two Minute Tutorial", but its probably more like five!) tutorial , go <a href="tutorial/TwoMinuteTutorial.html">here</a></p>
+        <p>A full explanation of how to use JValidations is given in the tutorial and cookbook documents, accessible from the
+            menu to the left.  However, a simple piece of code here should give you an idea:</p>
 
-    <p>If you want to view the cookbook to see how various validation tasks are done , go <a href="cookbook/Cookbook.html">here</a></p>
+        <pre class="code">
+            public class Customer implements Validatable&lt;ValidationReport&gt;{
+                private String name;
+                private String email;
 
+                public void buildValidation(ValidationSyntax validates, ValidationReport report) {
+                    validates.that("name", isNotBlank(), _else(report,"isBlank", fieldName()));
+                    validates.that("email", isNotBlank(), _else(report,"isBlank", fieldName()));
+                }
+
+                public interface ValidationReport {
+                    void isBlank(String fieldName);
+                }
+            }</pre>
+
+        <p>Here you can see that the domain object Customer defines its own validation rules.
+            It also defines its own callback interface (ValidationReport), which the caller will
+            have to implement in its own way.
+        </p>
+
+        <p>A Customer instance can be validated like this.  First define what the caller wants to do
+        in the event of a validation failure:</p>
+
+        <pre class="code">
+            public static class PrintingValidationReport implements Customer.ValidationReport {
+                public void isBlank(String fieldName){
+                    System.out.println(fieldName + " is blank");
+                }
+            }</pre>
+
+        <p>And now do the validation:</p>
+
+        <pre class="code">
+            JValidations.validate(new Customer(), new PrintingValidationReport());</pre>
+
+    </div>
+
+    <div id="menu">
+        <p><a href="http://dist.codehaus.org/jvalidations/">Download</a> - version @version.number@ (@release.date@)</p>
+
+        <p><a href="tutorial/TwoMinuteTutorial.html">Tutorial</a> - two minute introduction</p>
+
+        <p><a href="cookbook/Cookbook.html">Cookbook</a> - common validation scenarios</p>
+
+        <p><a href="http://jira.codehaus.org/browse/JVALIDATIONS">Jira</a> - raise a bug or feature request</p>
+    </div>
 </div>
 </body>
 </html>
