@@ -1,0 +1,155 @@
+<project name="JValidations" default="dist">
+
+    <target name="init">
+        <property name="component.name" value="jvalidations"/>
+        <property name="component.version" value="0.5"/>
+
+        <property name="path.build" value="build"/>
+        <property name="path.reports" value="build/reports"/>
+        <property name="path.reports.unittest" value="build/reports/unittest"/>
+        <property name="path.build.classes" value="build/classes"/>
+        <property name="path.build.lib" value="build/lib"/>
+        <property name="path.dist" value="dist"/>
+        <property name="path.dist.classes" value="dist/classes"/>
+        <property name="path.dist.lib" value="dist/lib"/>
+        <property name="path.dist.doc" value="dist/doc"/>
+        <property name="path.dist.doc.tutorial" value="dist/doc/tutorial"/>
+        <property name="path.dist.doc.cookbook" value="dist/doc/cookbook"/>
+        <property name="path.lib" value="lib"/>
+        <property name="path.src" value="src"/>
+        <property name="path.src.doc" value="src/doc"/>
+        <property name="path.src.java" value="src/java"/>
+        <property name="path.src.ruby" value="src/ruby"/>
+        <property name="path.src.java.test" value="src/test"/>
+        <property name="compile.debug" value="true"/>
+        <property name="compile.deprecation" value="true"/>
+        <property name="compile.jdk-version.source" value="1.5"/>
+        <property name="compile.jdk-version.target" value="1.5"/>
+        <property name="compile.optimize" value="true"/>
+
+        <path id="compile.classpath">
+            <fileset dir="${path.lib}">
+                <include name="*.jar"/>
+            </fileset>
+        </path>
+
+        <path id="test.classpath">
+            <path refid="compile.classpath"/>
+            <path location="${path.build.classes}"/>
+            <path location="${path.dist.classes}"/>
+        </path>
+
+        <tstamp>
+            <format property="date.today" pattern="d-MMMM-yyyy" locale="en,UK"/>
+        </tstamp>
+    </target>
+
+    <target name="make_directories" depends="init">
+        <mkdir dir="${path.build}"/>
+        <mkdir dir="${path.build.classes}"/>
+        <mkdir dir="${path.reports.unittest}"/>
+        <mkdir dir="${path.build.lib}"/>
+        <mkdir dir="${path.dist}"/>
+        <mkdir dir="${path.dist.classes}"/>
+        <mkdir dir="${path.dist.lib}"/>
+        <mkdir dir="${path.dist.doc}"/>
+        <mkdir dir="${path.dist.doc.tutorial}"/>
+        <mkdir dir="${path.dist.doc.cookbook}"/>
+    </target>
+
+    <target name="prepare" depends="init, make_directories"/>
+
+
+    <target name="compile" depends="prepare" description="Compile source">
+        <javac debug="${compile.debug}" deprecation="${compile.deprecation}" destdir="${path.dist.classes}"
+               target="${compile.jdk-version.target}" source="${compile.jdk-version.source}"
+               optimize="${compile.optimize}" srcdir="${path.src.java}">
+            <classpath refid="compile.classpath"/>
+        </javac>
+    </target>
+
+    <target name="build-test" depends="compile" description="Compiles test components">
+        <javac debug="${compile.debug}" deprecation="${compile.deprecation}" destdir="${path.build.classes}"
+               target="${compile.jdk-version.target}" source="${compile.jdk-version.source}"
+               optimize="${compile.optimize}" srcdir="${path.src.java.test}">
+            <classpath refid="test.classpath"/>
+        </javac>
+    </target>
+
+    <target name="test" depends="build-test" description="run the tests and produce a report">
+        <junit failureproperty="tests.failed" errorproperty="tests.failed" printsummary="yes">
+            <formatter type="xml"/>
+            <batchtest todir="${path.reports.unittest}">
+                <fileset dir="${path.build.classes}">
+                    <include name="**/*Test.class"/>
+                </fileset>
+            </batchtest>
+            <classpath refid="test.classpath"/>
+        </junit>
+
+        <junitreport todir="${path.reports}">
+            <fileset dir="${path.reports.unittest}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${path.reports}"/>
+        </junitreport>
+        <fail if="tests.failed" message="See ${basedir}/build/reports/index.html for details"/>
+    </target>
+
+    <target name="jar" depends="test" description="Create binary distribution">
+        <copy file="LICENSE" todir="${path.dist.classes}"/>
+        <delete>
+            <fileset dir="${path.dist.lib}" includes="*.jar"/>
+        </delete>
+        <jar destfile="${path.dist.lib}/${component.name}-${component.version}.jar"
+             basedir="${path.dist.classes}"
+             excludes="**/Test.class"
+                />
+        <delete>
+            <fileset dir="${path.dist.classes}">
+                <include name="LICENSE"/>
+            </fileset>
+        </delete>
+    </target>
+
+    <target name="src-zip" depends="compile, generate_doc" description="Creates source distribution">
+        <copy file="LICENSE" todir="${path.src.java}"/>
+        <delete>
+            <fileset dir="${path.dist.lib}" includes="*-src.zip"/>
+        </delete>
+        <zip basedir="." destfile="${path.dist.lib}/${component.name}-${component.version}-src.zip" whenempty="fail">
+            <fileset dir="${path.dist}" includes="doc/**"/>
+            <include name="LICENSE"/>
+            <include name="build.xml"/>
+            <include name="${path.src}/**"/>
+            <include name="${path.lib}/**"/>
+        </zip>
+    </target>
+
+    <target name="generate_doc" depends="make_directories" description="Generate non-javadoc documentation">
+        <parallel>
+            <exec executable="ruby" dir="${path.dist.doc.tutorial}">
+                <arg file="${path.src.ruby}/to_code_html.rb"/>
+                <arg line="../../../${path.src.doc}/jvalidations/twominute/TwoMinuteTutorial.java"/>
+            </exec>
+            <exec executable="ruby" dir="${path.dist.doc.cookbook}">
+                <arg file="${path.src.ruby}/to_code_html.rb"/>
+                <arg line="../../../${path.src.doc}/jvalidations/cookbook/Cookbook.java"/>
+            </exec>
+            <copy file="${path.src.doc}/jvalidations/style.css" todir="${path.dist.doc}"/>
+            <copy file="${path.src.doc}/jvalidations/index.html" todir="${path.dist.doc}" filtering="true" overwrite="yes">
+                <filterset>
+                    <filter token="version.number" value="${component.version}"/>
+                    <filter token="release.date" value="${date.today}"/>
+                </filterset>
+            </copy>
+        </parallel>
+    </target>
+
+    <target name="dist" depends="jar,src-zip"/>
+
+    <target name="clean" depends="init" description="Wipeout all generated files">
+        <delete dir="${path.dist}"/>
+        <delete dir="${path.build}"/>
+    </target>
+</project>
