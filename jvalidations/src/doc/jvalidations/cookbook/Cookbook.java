@@ -1,24 +1,21 @@
 package jvalidations.cookbook;
 
-import static jvalidations.SyntaxSupport.Parameters.fieldName;
-import static jvalidations.SyntaxSupport.Parameters.fieldNames;
-import static jvalidations.SyntaxSupport.Parameters.requiredCount;
-import static jvalidations.SyntaxSupport.Parameters.actualCount;
 import static jvalidations.SyntaxSupport._else;
-import static jvalidations.SyntaxSupport.ValidationLogic.and;
+import static jvalidations.SyntaxSupport.Parameters.*;
 import static jvalidations.SyntaxSupport.Conditions.condition;
 import static jvalidations.SyntaxSupport.Cardinalities.atLeast;
 import jvalidations.Validatable;
 import jvalidations.ValidationSyntax;
-import jvalidations.SyntaxSupport;
 import jvalidations.DefaultValidationBuilder;
-import static jvalidations.validations.NullValidation.isNotNull;
-import static jvalidations.validations.BlankValidation.isNotBlank;
-import jvalidations.validations.LengthOfValidation;
-import jvalidations.validations.GreaterThanValidation;
-import static jvalidations.validations.GreaterThanValidation.isGreaterThan;
-import static jvalidations.validations.LengthOfValidation.isLongerThan;
-import static jvalidations.validations.LengthOfValidation.isShorterThan;
+import jvalidations.SyntaxSupport;
+import org.hamcrest.core.*;
+import static org.hamcrest.core.DescribedAs.describedAs;
+import static org.hamcrest.core.IsNot.not;
+import static org.hamcrest.core.IsNull.notNullValue;
+import org.hamcrest.text.IsEmptyString;
+import static org.hamcrest.text.IsEmptyString.isEmptyString;
+import org.hamcrest.number.OrderingComparison;
+import static org.hamcrest.number.OrderingComparison.greaterThan;
 
 public class Cookbook {
     /**
@@ -41,13 +38,52 @@ public class Cookbook {
 
             public void buildValidation(ValidationSyntax validates,
                                         ValidationReport report) {
-                validates.that("someQueryMethod()", isNotNull(), _else(report, "isNull", fieldName()));
+                validates.that("someQueryMethod()", notNullValue(), _else(report, "isNull", fieldName()));
             }
         }
 
         /**
          * This will call <domaincode>someQueryMethod()</domaincode> on the instance of <domaincode>Customer</domaincode> being
          * validated, then validate that the result of that method is not null.
+         */
+    }//ignore
+
+    public static class Section_SpecifyingParametersForYourValidationFailureCallbackMethod {
+        /**
+         * There may be a time where you want to have parameters from the context of the validation rule passed
+         * through to your validation failure callback method.  We have already seen this some for <method>fieldName()</method>.
+         * But other possibilities exist like:
+         * <br/>
+         * <ul>
+         * <li><method>requiredCount()</method> - the number specified in a cardinality.  For example, it would be 2 in <method>atLeast(2)</method></li>
+         * <li><method>actualCount()</method> - the number of successful matches in a rule with cardinality. For example, if you stated <method>atLeast(2)</method> of something, but only 1 was successful, this number would be 1</li>
+         * <li><method>fieldNames()</method> - the names of the fields in a rule with cardinality. For example, if you stated <method>atLeast(1).of("age","name")</method>  this would be a string array containing "age" and "name"</li>
+         * <li><method>fieldName()</method> - the name of the field in a rule without cardinality. For example, if you stated <method>validates.that("age",...</method> this would be the string "age"</li>
+         * <li><method>constant()</method> - any value that you specify as a constant will be passed through untouched</li>
+         * <li><method>failureDescription()</method> - a string describing the validation failure.  This string is built into the particular Hamcrest matcher.  You can specify your own string using <method>DescribedAs.describedAs()</method> as shown below.</li>
+         * </ul>
+         * <br/>
+         * Some examples:
+         */
+        public static class Customer implements Validatable<Customer.ValidationReport> {
+            private String name;
+            private int age;
+
+            public interface ValidationReport {
+                void describedFailure(String fieldName, String failureDescription);
+                void failureWithErrorCode(String errorCode);
+            }
+
+            public void buildValidation(ValidationSyntax validates,
+                                        ValidationReport report) {
+                validates.that("name", notNullValue(), _else(report, "describedFailure", fieldName(), failureDescription()));
+                validates.that("age", 
+                        describedAs("ErrorCode 1002",greaterThan(21)),
+                        _else(report, "failureWithErrorCode", failureDescription()));
+            }
+        }
+        /**
+         * All of these parameter methods are available as static imports from <class>SyntaxSupport.Parameters</class>.
          */
     }//ignore
 
@@ -68,7 +104,7 @@ public class Cookbook {
                                         ValidationReport report) {
                 validates.that(
                         atLeast(2).of("name","email","level"),
-                        isNotNull(),
+                        notNullValue(),
                         _else(report, "isNull", fieldNames(), requiredCount(), actualCount()));
             }
         }
@@ -102,8 +138,8 @@ public class Cookbook {
 
             public void buildValidation(ValidationSyntax validates,
                                         ValidationReport report) {
-                validates.that("addressLine1", isNotBlank(), _else(report, "required", fieldName()));
-                validates.that("postCode", isNotBlank(), _else(report, "required", fieldName()));
+                validates.that("addressLine1", not(isEmptyString()), _else(report, "required", fieldName()));
+                validates.that("postCode", not(isEmptyString()), _else(report, "required", fieldName()));
             }
         }
 
@@ -123,8 +159,8 @@ public class Cookbook {
 
             public void buildValidation(ValidationSyntax validates,
                                         ValidationReport report) {
-                validates.that("name", isNotBlank(), _else(report, "isBlank", fieldName()));
-                validates.that("email", isNotBlank(), _else(report, "isBlank", fieldName()));
+                validates.that("name", not(isEmptyString()), _else(report, "isBlank", fieldName()));
+                validates.that("email", not(isEmptyString()), _else(report, "isBlank", fieldName()));
                 validates.associated("address", report);
             }
         }
@@ -161,11 +197,11 @@ public class Cookbook {
 
             public void buildValidation(ValidationSyntax validates,
                                         R report) {
-                validates.that("name",isNotBlank(), _else(report, "isBlank", fieldName()));
+                validates.that("name",not(isEmptyString()), _else(report, "isBlank", fieldName()));
             }
         }
         /**
-         * And now the sub class...
+         * And now the subclass...
          */
         public static class Customer extends AbstractCustomer<Customer.ValidationReport>{
             private String email;
@@ -177,7 +213,7 @@ public class Cookbook {
             public void buildValidation(ValidationSyntax validates,
                                         ValidationReport report) {
                 super.buildValidation(validates, report);
-                validates.that("name",isNotBlank(), _else(report, "isBlank", fieldName()));
+                validates.that("name",not(isEmptyString()), _else(report, "isBlank", fieldName()));
             }
         }
         /**
@@ -203,12 +239,12 @@ public class Cookbook {
 
             public void buildValidation(ValidationSyntax validates,
                                         ValidationReport report) {
-                validates.that("addressLine1", isNotBlank(), _else(report, "required", fieldName()));
+                validates.that("addressLine1", not(isEmptyString()), _else(report, "required", fieldName()));
                 validates.that(
                         "addressLine2",
-                        isNotBlank(),
+                        not(isEmptyString()),
                         _else(report, "required", fieldName())
-                ).on(condition("addressLine1", isNotBlank()));
+                ).on(condition("addressLine1", not(isEmptyString())));
             }
         }
         /**
@@ -227,8 +263,10 @@ public class Cookbook {
     public static class Section_LogicalOperationsForValidationRules {
         /**
          * Sometimes you may want to combine validations into a logical expression to state your intent.
-         * I am talking about <method>and()</method>, <method>or()</method>, <method>not()</method> and the like.
-         * These operators are available on <class>SyntaxSupport.ValidationLogic</class> and you can combine them to your hearts content.
+         * I am talking about the hamcrest <method>AllOf.allOf()</method>, <method>AnyOf.anyOf()()</method>, <method>IsNot.not()</method> and the like.
+         * <br/>
+         * <br/>
+         * Say you want a string to either start with Jo or Ac....
          */
         public static class Customer implements Validatable<Customer.ValidationReport>{
             private String name;
@@ -241,12 +279,12 @@ public class Cookbook {
                                         ValidationReport report) {
                 validates.that(
                         "name",
-                        and(isLongerThan(2), isShorterThan(10)),
+                        AnyOf.anyOf(StringStartsWith.startsWith("Jo"),StringStartsWith.startsWith("Ac")),
                         _else(report, "somethingWrong")); //same as isBetween()
             }
         }
         /**
-         * The same kind of thing goes for <method>or()</method> and <method>not()</method>. 
+         * The same kind of thing goes for <method>AllOf.allOf()()</method> and <method>IsNot.not()</method>.
          */
     }//ignore
 
@@ -271,7 +309,7 @@ public class Cookbook {
                                         ValidationReport report) {
                 validates.that(
                         "creditAvailable",
-                        isGreaterThan(1000),
+                        greaterThan(1000),
                         _else(report, "insufficientCredit")
                 ).tags("Due Diligence");
             }

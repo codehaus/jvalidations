@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
     <title>JValidations - Java API for validation</title>
     <meta name="description" content="JValidations is a Java API to express validation rules for your objects"/>
-    <meta name="keywords" content="Java, validation, API"/>
+    <meta name="keywords" content="Java, validation, framework, java validation framework, business rules, api, validate"/>
     <link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
 <body>
@@ -22,7 +22,7 @@
             <li>validation is performed by the objects themselves, not in external "validator" classes, preserving
                 encapsulation
             </li>
-            <li>validation rules are expressed in declarative java, not in XML or annotations or what have you</li>
+            <li>validation rules are expressed in declarative java using <a href="http://code.google.com/p/hamcrest/">Hamcrest</a> matchers, not in XML or annotations or what have you</li>
             <li>how a validation failure is handled is entirely up to the caller through the use of callback interfaces</li>
             <li>extensible in that custom validations can be coded, and the DSL syntax can be modified to suit your needs</li>
         </ul>
@@ -36,8 +36,8 @@
                 private String email;
 
                 public void buildValidation(ValidationSyntax validates, ValidationReport report) {
-                    validates.that("name", isNotBlank(), _else(report,"isBlank", fieldName()));
-                    validates.that("email", isNotBlank(), _else(report,"isBlank", fieldName()));
+                    validates.that("name", not(isEmptyString()), _else(report,"isBlank", fieldName()));
+                    validates.that("email", not(isEmptyString()), _else(report,"isBlank", fieldName()));
                 }
 
                 public interface ValidationReport {
@@ -70,6 +70,8 @@
     <div id="menu">
         <p><a href="http://dist.codehaus.org/jvalidations/">Download</a> - version @version.number@ (@release.date@)</p>
 
+        <p><a href="dependencies.html">Dependencies</a> - what else you require to use JValidations</p>
+
         <p><a href="tutorial/TwoMinuteTutorial.html">Tutorial</a> - two minute introduction</p>
 
         <p><a href="cookbook/Cookbook.html">Cookbook</a> - common validation scenarios</p>
@@ -79,6 +81,7 @@
         <p><a href="http://svn.codehaus.org/jvalidations/trunk/jvalidations">Subversion</a> - browse source code</p>
 
         <p><a href="http://bamboo.ci.codehaus.org/browse/JVALIDATIONS-DEF">Bamboo</a> - view results of latest build</p>
+
     </div>
 </div>
 </body>
