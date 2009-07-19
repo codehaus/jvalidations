@@ -5,23 +5,16 @@ import static jedi.functional.FunctionalPrimitives.collect;
 import static jvalidations.Accessor.Functors.name;
 import static jvalidations.ParameterLookupForCallbackMethod.Functors.type;
 import static jvalidations.ParameterLookupForCallbackMethod.Functors.value;
-import static jvalidations.Validation.Functors._check;
-import static jvalidations.Validation.Functors._parameter;
-import static jvalidations.functional.Filters.isFalse;
-import static jvalidations.functional.Filters.notNull;
-import static jvalidations.functional.Functional.first;
 import static jvalidations.functional.Functional.find;
 import static jvalidations.functional.Functors.declaredMethod;
 import static jvalidations.functional.Functors.superClass;
-import static jvalidations.validations.TrueValidation.isTrue;
-import jvalidations.validations.*;
+import org.hamcrest.Matcher;
+import org.hamcrest.StringDescription;
+import static org.hamcrest.core.Is.is;
 
-import static java.lang.Boolean.FALSE;
-import static java.lang.Boolean.TRUE;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
-import java.util.Collection;
 
 public class SyntaxSupport {
     public static ElseClause _else(final Object report,
@@ -29,14 +22,14 @@ public class SyntaxSupport {
                                    final ParameterLookupForCallbackMethod... parameterLookupForCallbackMethod
     ) {
         return new ElseClause() {
-            public void execute(Object candidate, Cardinality cardinality, Validation validation, int numValid) {
+            public void execute(Object candidate, Cardinality cardinality, Matcher matcher, int numValid) {
                 try {
-                    executeWithoutExceptionHandling(candidate, cardinality, validation, numValid);
+                    executeWithoutExceptionHandling(candidate, cardinality, matcher, numValid);
                 } catch (IllegalAccessException e) {
                     throw new RuntimeException(e);
                 } catch (InvocationTargetException e) {
                     Throwable targetException = e.getTargetException();
-                    if(targetException instanceof RuntimeException) {
+                    if (targetException instanceof RuntimeException) {
                         throw (RuntimeException) targetException;
                     }
                     throw new RuntimeException(targetException);
@@ -45,33 +38,34 @@ public class SyntaxSupport {
 
             private void executeWithoutExceptionHandling(Object candidate,
                                                          Cardinality cardinality,
-                                                         Validation validation,
+                                                         Matcher matcher,
                                                          int numValid)
                     throws IllegalAccessException, InvocationTargetException {
-                Class[] types = types(candidate, cardinality, validation, parameterLookupForCallbackMethod);
-                Object[] values = parameters(candidate, cardinality, validation, numValid, parameterLookupForCallbackMethod);
+                Class[] types = types(candidate, cardinality, matcher, parameterLookupForCallbackMethod);
+                Object[] values = parameters(candidate, cardinality, matcher, numValid, parameterLookupForCallbackMethod);
                 Method method = find(declaredMethod(callbackMethodName, types), report.getClass(), superClass());
-                if(method == null) {
-                    throw new RuntimeException("Could not find method '"+callbackMethodName+"' in '" + report.getClass() +"'");
+                if (method == null) {
+                    throw new RuntimeException(
+                            "Could not find method '" + callbackMethodName + "' in '" + report.getClass() + "'");
                 }
                 method.invoke(report, values);
             }
 
             public Class[] types(Object candidate,
                                  Cardinality cardinality,
-                                 Validation validation,
+                                 Matcher matcher,
                                  ParameterLookupForCallbackMethod... parameterLookupForCallbackMethod) {
                 return parameterLookupForCallbackMethod.length == 0 ? new Class[0] : asArray(
-                        collect(parameterLookupForCallbackMethod, type(candidate, cardinality, validation)));
+                        collect(parameterLookupForCallbackMethod, type(candidate, cardinality, matcher)));
             }
 
             public Object[] parameters(Object candidate,
                                        Cardinality cardinality,
-                                       Validation validation,
+                                       Matcher matcher,
                                        int numValid,
                                        ParameterLookupForCallbackMethod... parameterLookupForCallbackMethod) {
                 List<Object> list =
-                        collect(parameterLookupForCallbackMethod, value(candidate, cardinality, validation, numValid));
+                        collect(parameterLookupForCallbackMethod, value(candidate, cardinality, matcher, numValid));
 
                 Object[] values = new Object[list.size()];
                 int index = 0;
@@ -88,14 +82,14 @@ public class SyntaxSupport {
     public static class Conditions {
 
         public static Condition condition(final String accessorName) {
-            return condition(accessorName, isTrue());
+            return condition(accessorName, is(true));
         }
 
-        public static Condition condition(final String accessorName, final Validation validation) {
+        public static Condition condition(final String accessorName, final Matcher matcher) {
             return new Condition() {
                 public boolean check(Object candidate) {
                     Accessor accessor = Accessor.Functors.fromString().execute(accessorName);
-                    return validation.check(accessor.value(candidate));
+                    return matcher.matches(accessor.value(candidate));
                 }
             };
         }
@@ -152,7 +146,7 @@ public class SyntaxSupport {
         }
 
         public static Cardinality exactly(final int required) {
-            return new AbstractCardinality(){
+            return new AbstractCardinality() {
                 public boolean requiresMoreChecks(int numValid, int numberChecksRemaining) {
                     return numberChecksRemaining > 0 && numValid <= required;
                 }
@@ -189,11 +183,11 @@ public class SyntaxSupport {
 
         public static ParameterLookupForCallbackMethod requiredCount() {
             return new ParameterLookupForCallbackMethod() {
-                public Class type(Object candidate, Cardinality cardinality, Validation validation) {
+                public Class type(Object candidate, Cardinality cardinality, Matcher matcher) {
                     return Integer.TYPE;
                 }
 
-                public Object value(Object candidate, Cardinality cardinality, Validation validation, int numValid) {
+                public Object value(Object candidate, Cardinality cardinality, Matcher matcher, int numValid) {
                     return cardinality.requiredCount();
                 }
             };
@@ -201,11 +195,11 @@ public class SyntaxSupport {
 
         public static ParameterLookupForCallbackMethod actualCount() {
             return new ParameterLookupForCallbackMethod() {
-                public Class type(Object candidate, Cardinality cardinality, Validation validation) {
+                public Class type(Object candidate, Cardinality cardinality, Matcher matcher) {
                     return Integer.TYPE;
                 }
 
-                public Object value(Object candidate, Cardinality cardinality, Validation validation, int numValid) {
+                public Object value(Object candidate, Cardinality cardinality, Matcher matcher, int numValid) {
                     return numValid;
                 }
             };
@@ -213,13 +207,13 @@ public class SyntaxSupport {
 
         public static ParameterLookupForCallbackMethod fieldNames() {
             return new ParameterLookupForCallbackMethod() {
-                public Class type(Object candidate, Cardinality cardinality, Validation validation) {
+                public Class type(Object candidate, Cardinality cardinality, Matcher matcher) {
                     return new String[0].getClass();
                 }
 
                 public Object value(Object candidate,
                                     Cardinality cardinality,
-                                    Validation validation,
+                                    Matcher matcher,
                                     int numValid) {
                     return asArray(collect(cardinality.getAccessors(), name()));
                 }
@@ -228,167 +222,40 @@ public class SyntaxSupport {
 
         public static ParameterLookupForCallbackMethod fieldName() {
             return new ParameterLookupForCallbackMethod() {
-                public Class type(Object candidate, Cardinality cardinality, Validation validation) {
+                public Class type(Object candidate, Cardinality cardinality, Matcher matcher) {
                     return String.class;
                 }
 
-                public Object value(Object candidate, Cardinality cardinality, Validation validation, int numValid) {
+                public Object value(Object candidate, Cardinality cardinality, Matcher matcher, int numValid) {
                     return cardinality.getAccessors().get(0).name();
                 }
             };
         }
 
-        public static ParameterLookupForCallbackMethod string(final String value) {
+        public static ParameterLookupForCallbackMethod constant(final Object value) {
             return new ParameterLookupForCallbackMethod() {
-                public Class type(Object candidate, Cardinality cardinality, Validation validation) {
-                    return String.class;
+                public Class type(Object candidate, Cardinality cardinality, Matcher matcher) {
+                    return value.getClass();
                 }
 
-                public Object value(Object candidate, Cardinality cardinality, Validation validation, int numValid) {
+                public Object value(Object candidate, Cardinality cardinality, Matcher matcher, int numValid) {
                     return value;
                 }
             };
         }
-    }
 
-    public static class ValidationLogic {
-
-        public static Validation not(final Validation delegate) {
-            return new Validation() {
-                public boolean check(Object o) {
-                    return !delegate.check(o);
+        public static ParameterLookupForCallbackMethod failureDescription() {
+            return new ParameterLookupForCallbackMethod() {
+                public Class type(Object candidate, Cardinality cardinality, Matcher matcher) {
+                    return String.class;
                 }
 
-                public Object parameter(String name) {
-                    return delegate.parameter(name);
-                }
-            };
-        }
-
-        public static Validation and(final Validation... validations) {
-            return new Validation() {
-                public boolean check(Object o) {
-                    return first(validations, _check(o), isFalse(),
-                            TRUE);
-                }
-
-                public Object parameter(String name) {
-                    return first(validations, _parameter(name), notNull(), null);
-                }
-            };
-        }
-
-        public static Validation or(final Validation... validations) {
-            return new Validation() {
-                public boolean check(Object o) {
-                    return first(validations, _check(o), jvalidations.functional.Filters.isTrue(),
-                            FALSE);
-                }
-
-                public Object parameter(String name) {
-                    return first(validations, _parameter(name), notNull(), null);
+                public Object value(Object candidate, Cardinality cardinality, Matcher matcher, int numValid) {
+                    StringDescription description = new StringDescription();
+                    matcher.describeTo(description);
+                    return description.toString();
                 }
             };
         }
     }
-
-    public static class Validations {
-
-        public static Validation isNull() {
-            return NullValidation.isNull();
-        }
-
-        public static Validation isNotNull() {
-            return NullValidation.isNotNull();
-        }
-
-        public static Validation isBlank() {
-            return BlankValidation.isBlank();
-        }
-
-        public static Validation isNotBlank() {
-            return BlankValidation.isNotBlank();
-        }
-
-        public static Validation isEqualTo(Object required) {
-            return EqualsValidation.isEqualTo(required);
-        }
-
-        public static Validation isNotEqualTo(Object required) {
-            return EqualsValidation.isNotEqualTo(required);
-        }
-
-        public static Validation isFalse() {
-            return FalseValidation.isFalse();
-        }
-
-        public static Validation isNotFalse() {
-            return FalseValidation.isNotFalse();
-        }
-
-        public static Validation isTrue() {
-            return TrueValidation.isTrue();
-        }
-
-        public static Validation isNotTrue() {
-            return TrueValidation.isNotTrue();
-        }
-
-        public static Validation isOfFormat(String format) {
-            return FormatOfValidation.isOfFormat(format);
-        }
-
-        public static Validation isNotOfFormat(String format) {
-            return FormatOfValidation.isNotOfFormat(format);
-        }
-
-        public static Validation isGreaterThan(Number n) {
-            return GreaterThanValidation.isGreaterThan(n);
-        }
-
-        public static Validation isNotGreaterThan(Number n) {
-            return GreaterThanValidation.isNotGreaterThan(n);
-        }
-
-        public static Validation isLessThan(Number n) {
-            return LessThanValidation.isLessThan(n);
-        }
-
-        public static Validation isNotLessThan(Number n) {
-            return LessThanValidation.isNotLessThan(n);
-        }
-
-        public static Validation isLongerThan(int limit) {
-            return LengthOfValidation.isLongerThan(limit);
-        }
-
-        public static Validation isNotLongerThan(int limit) {
-            return LengthOfValidation.isNotLongerThan(limit);
-        }
-
-        public static Validation isShorterThan(int limit) {
-            return LengthOfValidation.isShorterThan(limit);
-        }
-
-        public static Validation isNotShorterThan(int limit) {
-            return LengthOfValidation.isNotShorterThan(limit);
-        }
-
-        public static Validation isBetween(int min, int max) {
-            return LengthOfValidation.isBetween(min,max);
-        }
-
-        public static Validation isNotBetween(int min, int max) {
-            return LengthOfValidation.isNotBetween(min,max);
-        }
-
-        public static Validation isOneOf(Collection possibilities) {
-            return OneOfValidation.isOneOf(possibilities);
-        }
-
-        public static Validation isNotOneOf(Collection possibilities) {
-            return OneOfValidation.isNotOneOf(possibilities);
-        }
-    }
-
 }

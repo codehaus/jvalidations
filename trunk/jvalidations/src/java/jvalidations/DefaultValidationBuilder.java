@@ -23,6 +23,8 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hamcrest.Matcher;
+
 public class DefaultValidationBuilder implements ValidationSyntax {
     private List<ConditionableCommand> commands = new ArrayList<ConditionableCommand>();
     private List<Filter<ConditionableCommand>> tagConditions = new ArrayList<Filter<ConditionableCommand>>();
@@ -44,26 +46,26 @@ public class DefaultValidationBuilder implements ValidationSyntax {
         this.stopOnFirstFailure = stopOnFirstFailure;
     }
 
-    public Conditionable that(final String fieldName, final Validation validation, final ElseClause elseClause) {
-        return that(exactly(1).of(fieldName), validation, elseClause);
+    public Conditionable that(final String fieldName, final Matcher matcher, final ElseClause elseClause) {
+        return that(exactly(1).of(fieldName), matcher, elseClause);
     }
 
-    public Conditionable that(final Cardinality cardinality, final Validation validation, final ElseClause elseClause) {
+    public Conditionable that(final Cardinality cardinality, final Matcher matcher, final ElseClause elseClause) {
         Command command = new Command() {
             public boolean execute(Object candidate) {
-                int numValid = checkValidity(candidate, cardinality, validation);
+                int numValid = checkValidity(candidate, cardinality, matcher);
                 if (!cardinality.happyWith(numValid)) {
-                    elseClause.execute(candidate, getCardinalityInRightNestingContext(cardinality), validation, numValid);
+                    elseClause.execute(candidate, getCardinalityInRightNestingContext(cardinality), matcher, numValid);
                     return false;
                 }
                 return true;
             }
 
-            private int checkValidity(Object candidate, Cardinality cardinality, Validation validation) {
+            private int checkValidity(Object candidate, Cardinality cardinality, Matcher validation) {
                 List<Accessor> accessors = cardinality.getAccessors();
                 int numValid = 0;
                 for (int i = 0; i < accessors.size() && cardinality.requiresMoreChecks(numValid, accessors.size() - i); i++) {
-                    if (validation.check(accessors.get(i).value(candidate))) {
+                    if (validation.matches(accessors.get(i).value(candidate))) {
                         numValid++;
                     }
                 }

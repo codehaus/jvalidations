@@ -59,9 +59,9 @@ public class SyntaxSupportTest extends AbstractJValidationsTestCase {
         }
     }
 
-    public void testStringParameterWorksForStrings() {
-        String value = "This is a string constant";
-        ParameterLookupForCallbackMethod param = SyntaxSupport.Parameters.string(value);
+    public void testCanReturnConstantsAsParameters() {
+        String value = "This is a constant constant";
+        ParameterLookupForCallbackMethod param = SyntaxSupport.Parameters.constant(value);
         assertEquals(String.class, param.type(null,null,null));
         assertEquals(value, param.value(null,null,null,0));
     }

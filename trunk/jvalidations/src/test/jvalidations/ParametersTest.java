@@ -3,6 +3,10 @@ package jvalidations;
 import static jedi.functional.Coercions.array;
 import static jedi.functional.Coercions.asList;
 import static jedi.functional.FunctionalPrimitives.collect;
+import org.hamcrest.core.DescribedAs;
+import org.hamcrest.core.IsNull;
+import static org.hamcrest.core.DescribedAs.describedAs;
+import static org.hamcrest.core.IsNull.nullValue;
 
 public class ParametersTest extends AbstractJValidationsTestCase {
 
@@ -33,5 +37,14 @@ public class ParametersTest extends AbstractJValidationsTestCase {
                 mock().cardinality().withAccessors(new FieldAccessor("a")).build(), null, 0);
         assertEquals("a", actualFieldName);
         assertEquals(String.class, fieldName.type(null,null,null));
+    }
+
+    public void testValidationFailureDescriptionParameter() {
+        ParameterLookupForCallbackMethod description = SyntaxSupport.Parameters.failureDescription();
+        String actualFieldName = (String) description.value(null,
+                null, describedAs("Failure Description", nullValue()), 0);
+        assertEquals("Failure Description", actualFieldName);
+        assertEquals(String.class, description.type(null,null,null));
+
     }
 }

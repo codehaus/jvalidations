@@ -16,8 +16,56 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" readonly="true" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/doc/jvalidations/index.html" afterPath="$PROJECT_DIR$/src/doc/jvalidations/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/jvalidations/DefaultValidationBuilderTest.java" afterPath="$PROJECT_DIR$/src/test/jvalidations/DefaultValidationBuilderTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jvalidation2.iml" afterPath="$PROJECT_DIR$/jvalidation2.iml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/java/jvalidations/validations/GreaterThanValidation.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/jvalidations/validations/EqualsValidationTest.java" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/java/jvalidations/MatcherFunctors.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/jvalidations/DefaultValidationBuilder.java" afterPath="$PROJECT_DIR$/src/java/jvalidations/DefaultValidationBuilder.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/jvalidations/validations/LengthOfValidationTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/jvalidations/validations/NullValidationTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/doc/jvalidations/twominute/TwoMinuteTutorial.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/java/jvalidations/validations/AbstractSizeValidation.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/jvalidations/ValidationLogicTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/java/jvalidations/validations/FalseValidation.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/jvalidations/validations/TrueValidationTest.java" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/doc/jvalidations/dependencies.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/doc/jvalidations/cookbook/Cookbook.java" afterPath="$PROJECT_DIR$/src/doc/jvalidations/cookbook/Cookbook.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/java/jvalidations/validations/LengthOfValidation.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/java/jvalidations/validations" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/jvalidations/ParameterLookupForCallbackMethod.java" afterPath="$PROJECT_DIR$/src/java/jvalidations/ParameterLookupForCallbackMethod.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.xml" afterPath="$PROJECT_DIR$/build.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/hamcrest-core-1.2.jar" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/java/jvalidations/validations/AbstractTruthValidation.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/jvalidations/validations/FalseValidationTest.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/doc/jvalidations/twominute/TwoMinuteTutorial.java" afterPath="$PROJECT_DIR$/src/doc/jvalidations/twominute/TwoMinuteTutorial.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/doc/jvalidations/cookbook/Cookbook.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/java/jvalidations/validations/LessThanValidation.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/jvalidations/AbstractJValidationsTestCase.java" afterPath="$PROJECT_DIR$/src/test/jvalidations/AbstractJValidationsTestCase.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/jvalidations/ValidationSyntax.java" afterPath="$PROJECT_DIR$/src/java/jvalidations/ValidationSyntax.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/jvalidations/ElseClause.java" afterPath="$PROJECT_DIR$/src/java/jvalidations/ElseClause.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/java/jvalidations/validations/TrueValidation.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/java/jvalidations/validations/AbstractParameterlessValidation.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/jvalidations/validations/OneOfValidationTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/java/jvalidations/validations/AbstractParameterizedValidation.java" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/hamcrest-library-1.2.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/jvalidations/SyntaxSupport.java" afterPath="$PROJECT_DIR$/src/java/jvalidations/SyntaxSupport.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/java/jvalidations/validations/DerivedPropertyValidation.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/jvalidations/ParametersTest.java" afterPath="$PROJECT_DIR$/src/test/jvalidations/ParametersTest.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/jvalidations/validations/BlankValidationTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/java/jvalidations/Validation.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/jvalidations/validations/GreaterThanValidationTest.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jvalidation2.iws" afterPath="$PROJECT_DIR$/jvalidation2.iws" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/jvalidations/validations/LessThanValidationTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/java/jvalidations/validations/BlankValidation.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/java/jvalidations/validations/FormatOfValidation.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/java/jvalidations/validations/NullValidation.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/jvalidations/validations" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/jvalidations/SyntaxSupportTest.java" afterPath="$PROJECT_DIR$/src/test/jvalidations/SyntaxSupportTest.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/java/jvalidations/validations/OneOfValidation.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/doc/jvalidations/index.html" afterPath="$PROJECT_DIR$/src/doc/jvalidations/index.html" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/java/jvalidations/validations/EqualsValidation.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/jvalidations/validations/FormatOfValidationTest.java" afterPath="" />
     </list>
     <ignored path=".idea/workspace.xml" />
     <ignored path="jvalidation2.iws" />
@@ -50,85 +98,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/test/jvalidations/DefaultValidationBuilderTest.java" line="165" class="jvalidations.DefaultValidationBuilderTest" package="jvalidations">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/test/jvalidations/validations/EqualsValidationTest.java" line="30" class="jvalidations.validations.EqualsValidationTest" package="jvalidations.validations">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/test/jvalidations/validations/LengthOfValidationTest.java" line="21" class="jvalidations.validations.LengthOfValidationTest" package="jvalidations.validations">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/java/jvalidations/validations/LessThanValidation.java" line="12" class="jvalidations.validations.LessThanValidation" package="jvalidations.validations">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/test/jvalidations/validations/LengthOfValidationTest.java" line="36" class="jvalidations.validations.LengthOfValidationTest" package="jvalidations.validations">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/java/jvalidations/Validation.java" line="14" class="Class at Validation.java:14" package="jvalidations">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/java/jvalidations/Validation.java" line="22" class="Class at Validation.java:22" package="jvalidations">
+      <breakpoint url="file://$PROJECT_DIR$/src/test/jvalidations/DefaultValidationBuilderTest.java" line="170" class="jvalidations.DefaultValidationBuilderTest" package="jvalidations">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -154,7 +124,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/java/jvalidations/DefaultValidationBuilder.java" line="126" class="jvalidations.DefaultValidationBuilder" package="jvalidations">
+      <breakpoint url="file://$PROJECT_DIR$/src/java/jvalidations/DefaultValidationBuilder.java" line="128" class="jvalidations.DefaultValidationBuilder" package="jvalidations">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -208,10 +178,35 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/doc/jvalidations/index.html">
+      <file leaf-file-name="AbstractJValidationsTestCase.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/jvalidations/AbstractJValidationsTestCase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="78" column="91" selection-start="3677" selection-end="3677" vertical-scroll-proportion="0.8528926">
+            <state line="120" column="8" selection-start="3534" selection-end="3534" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SyntaxSupport.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/java/jvalidations/SyntaxSupport.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="246" column="73" selection-start="10167" selection-end="10185" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#_else#0;class#SyntaxSupport#0" expanded="false" />
+                <element signature="method#execute#0;class#1018:4020" expanded="false" />
+                <element signature="class#Cardinalities#0;class#SyntaxSupport#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SyntaxSupportTest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/jvalidations/SyntaxSupportTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="61" column="50" selection-start="2840" selection-end="2840" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -220,62 +215,68 @@
       <file leaf-file-name="Cookbook.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/doc/jvalidations/cookbook/Cookbook.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="295" column="29" selection-start="14892" selection-end="14892" vertical-scroll-proportion="0.0">
+            <state line="79" column="31" selection-start="4450" selection-end="4450" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dependencies.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/doc/jvalidations/dependencies.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="36" column="63" selection-start="1590" selection-end="1590" vertical-scroll-proportion="-11.789474">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="to_code_html.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ruby/to_code_html.rb">
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/doc/jvalidations/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="139" selection-start="136" selection-end="136" vertical-scroll-proportion="-4.1538463">
+            <state line="24" column="116" selection-start="1219" selection-end="1219" vertical-scroll-proportion="-8.631579">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JValidations.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/java/jvalidations/JValidations.java">
+      <file leaf-file-name="TwoMinuteTutorial.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/doc/jvalidations/twominute/TwoMinuteTutorial.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="25" selection-start="36" selection-end="48" vertical-scroll-proportion="0.0">
+            <state line="107" column="78" selection-start="4930" selection-end="4930" vertical-scroll-proportion="0.3815261">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StringDescription.class" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/lib/junit-4.4.jar!/org/hamcrest/StringDescription.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="20" column="28" selection-start="807" selection-end="807" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build.xml">
+      <file leaf-file-name="ParametersTest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/jvalidations/ParametersTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="65" selection-start="629" selection-end="629" vertical-scroll-proportion="-7.5789475">
+            <state line="44" column="56" selection-start="2273" selection-end="2273" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SyntaxSupport.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/java/jvalidations/SyntaxSupport.java">
+      <file leaf-file-name="ParameterLookupForCallbackMethod.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/java/jvalidations/ParameterLookupForCallbackMethod.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="25" selection-start="1570" selection-end="1570" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ElseClause.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/java/jvalidations/ElseClause.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="23" selection-start="46" selection-end="46" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/doc/jvalidations/style.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="34" selection-start="521" selection-end="521" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="5" column="17" selection-start="102" selection-end="102" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -329,6 +330,7 @@
     </navigator>
   </component>
   <component name="PropertiesComponent">
+    <property name="project.structure.proportion" value="0.15" />
     <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder0" value="0" />
     <property name="MemberChooser.copyJavadoc" value="false" />
@@ -342,6 +344,7 @@
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth0" value="172" />
     <property name="MemberChooser.showClasses" value="true" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth0" value="153" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth4" value="986" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder1" value="1" />
@@ -349,6 +352,7 @@
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="RunManagerConfig.showSettingsBeforeRunnig" value="false" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder2" value="2" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth1" value="216" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder3" value="3" />
     <property name="MemberChooser.sorted" value="false" />
@@ -387,8 +391,8 @@
       <recent name="jvalidations" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.MethodAccessorTest">
-    <tempConfiguration default="false" name="MethodAccessorTest" type="JUnit" factoryName="JUnit" enabled="false" merge="false" runner="emma">
+  <component name="RunManager" selected="JUnit.ParametersTest.testValidationFailureDescriptionParameter">
+    <tempConfiguration default="false" name="ParametersTest.testValidationFailureDescriptionParameter" type="JUnit" factoryName="JUnit" enabled="false" merge="false" runner="emma">
       <pattern>
         <option name="PATTERN" value="jvalidations.*" />
         <option name="ENABLED" value="true" />
@@ -397,9 +401,9 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="jvalidations" />
-      <option name="MAIN_CLASS_NAME" value="jvalidations.MethodAccessorTest" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="jvalidations.ParametersTest" />
+      <option name="METHOD_NAME" value="testValidationFailureDescriptionParameter" />
+      <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -434,6 +438,32 @@
       <option name="VM_PARAMETERS" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG" enabled="false" merge="false">
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="ADDITIONAL_CLASS_PATH" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
     </configuration>
     <configuration default="true" type="JavascriptDebugSession" factoryName="Local">
       <JSDebuggerConfigurationSettings>
@@ -478,6 +508,40 @@
         <option name="Make" value="true" />
       </method>
     </configuration>
+    <configuration default="true" type="RSpecRunConfigurationType" factoryName="RSpec">
+      <module name="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e STDOUT.sync=true;STDERR.sync=true;load($0=ARGV.shift)" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="[none]" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUN_SPECS_SEPARATELY" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_SPEC_RUNNER" VALUE="false" />
+    </configuration>
+    <configuration default="true" type="TestUnitRunConfigurationType" factoryName="Ruby test">
+      <module name="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e STDOUT.sync=true;STDERR.sync=true;load($0=ARGV.shift)" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_CLASS_NAME" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="INHERITANCE_CHECK_DISABLED" VALUE="false" />
+    </configuration>
     <configuration default="false" name="All Tests" type="JUnit" factoryName="JUnit" enabled="false" merge="false" runner="emma">
       <module name="jvalidation2" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -504,7 +568,7 @@
     </configuration>
     <list size="2">
       <item index="0" class="java.lang.String" itemvalue="JUnit.All Tests" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.MethodAccessorTest" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.ParametersTest.testValidationFailureDescriptionParameter" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -561,23 +625,23 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="42" y="37" width="1440" height="746" extended-state="0" />
+    <frame x="0" y="23" width="1440" height="874" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Web Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" />
       <window_info id="Dataflow to this" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" />
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24928162" sideWeight="0.6625767" order="0" side_tool="false" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32903227" sideWeight="0.5" order="1" side_tool="false" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24928162" sideWeight="0.71794873" order="0" side_tool="false" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27307692" sideWeight="0.5" order="1" side_tool="false" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32668713" sideWeight="0.5" order="8" side_tool="false" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32564104" sideWeight="0.5" order="8" side_tool="false" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32668713" sideWeight="0.5" order="8" side_tool="false" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32668713" sideWeight="0.5" order="2" side_tool="false" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32564104" sideWeight="0.5" order="8" side_tool="false" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32564104" sideWeight="0.5" order="2" side_tool="false" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32903227" sideWeight="0.5" order="8" side_tool="false" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" />
@@ -665,99 +729,195 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/java/jvalidations/validations/FormatOfValidation.java">
+    <entry file="file://$PROJECT_DIR$/src/java/jvalidations/ElseClause.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="39" selection-start="308" selection-end="318" vertical-scroll-proportion="0.0">
+        <state line="4" column="17" selection-start="70" selection-end="70" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/jvalidations/ValidationSyntax.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="44" selection-start="133" selection-end="133" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/jvalidations/MatcherFunctors.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="48" selection-start="412" selection-end="412" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/java/jvalidations/DefaultValidationBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="28" selection-start="2066" selection-end="2066" vertical-scroll-proportion="0.0">
+        <state line="48" column="60" selection-start="2239" selection-end="2239" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/jvalidations/MethodAccessor.java">
+    <entry file="file://$PROJECT_DIR$/src/test/jvalidations/DefaultValidationBuilderTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="13" selection-start="300" selection-end="300" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/jvalidations/MethodAccessorTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="20" selection-start="458" selection-end="458" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/doc/jvalidations/twominute/TwoMinuteTutorial.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="190" column="9" selection-start="9775" selection-end="9994" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/jvalidations/JValidations.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="25" selection-start="36" selection-end="48" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/doc/jvalidations/cookbook/Cookbook.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="295" column="29" selection-start="14892" selection-end="14892" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/doc/jvalidations/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="34" selection-start="521" selection-end="521" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/jvalidations/SyntaxSupport.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="25" selection-start="1570" selection-end="1570" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/jvalidations/ElseClause.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="23" selection-start="46" selection-end="46" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ruby/to_code_html.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="139" selection-start="136" selection-end="136" vertical-scroll-proportion="-4.1538463">
+        <state line="283" column="9" selection-start="14317" selection-end="14317" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/build.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="65" selection-start="629" selection-end="629" vertical-scroll-proportion="-7.5789475">
+        <state line="12" column="121" selection-start="629" selection-end="629" vertical-scroll-proportion="-7.5789475">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/jvalidations/ParameterLookupForCallbackMethod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="17" selection-start="102" selection-end="102" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/jvalidations/AbstractJValidationsTestCase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="120" column="8" selection-start="3534" selection-end="3534" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/jvalidations/ParametersTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="56" selection-start="2273" selection-end="2273" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/junit-4.4.jar!/org/hamcrest/StringDescription.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="28" selection-start="807" selection-end="807" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/jvalidations/SyntaxSupportTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="61" column="50" selection-start="2840" selection-end="2840" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/jvalidations/SyntaxSupport.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="246" column="73" selection-start="10167" selection-end="10185" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#_else#0;class#SyntaxSupport#0" expanded="false" />
+            <element signature="method#execute#0;class#1018:4020" expanded="false" />
+            <element signature="class#Cardinalities#0;class#SyntaxSupport#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/doc/jvalidations/cookbook/Cookbook.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="79" column="31" selection-start="4450" selection-end="4450" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/doc/jvalidations/dependencies.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="63" selection-start="1590" selection-end="1590" vertical-scroll-proportion="-11.789474">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/doc/jvalidations/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="78" column="91" selection-start="3677" selection-end="3677" vertical-scroll-proportion="0.8528926">
+        <state line="24" column="116" selection-start="1219" selection-end="1219" vertical-scroll-proportion="-8.631579">
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/doc/jvalidations/twominute/TwoMinuteTutorial.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="107" column="78" selection-start="4930" selection-end="4930" vertical-scroll-proportion="0.3815261">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <option name="states">
+      <map>
+        <entry key="Copyright.UI">
+          <value>
+            <UIState>
+              <option name="proportions">
+                <SplitterProportionsDataImpl />
+              </option>
+            </UIState>
+          </value>
+        </entry>
+        <entry key="Errors.UI">
+          <value>
+            <UIState>
+              <option name="proportions">
+                <SplitterProportionsDataImpl />
+              </option>
+            </UIState>
+          </value>
+        </entry>
+        <entry key="ScopeChooserConfigurable.UI">
+          <value>
+            <UIState>
+              <option name="proportions">
+                <SplitterProportionsDataImpl />
+              </option>
+            </UIState>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="myStates">
+      <map>
+        <entry key="Copyright.UI">
+          <value>
+            <UIState>
+              <option name="proportions">
+                <SplitterProportionsDataImpl />
+              </option>
+            </UIState>
+          </value>
+        </entry>
+        <entry key="Errors.UI">
+          <value>
+            <UIState>
+              <option name="proportions">
+                <SplitterProportionsDataImpl />
+              </option>
+            </UIState>
+          </value>
+        </entry>
+        <entry key="ScopeChooserConfigurable.UI">
+          <value>
+            <UIState>
+              <option name="proportions">
+                <SplitterProportionsDataImpl />
+              </option>
+            </UIState>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
 

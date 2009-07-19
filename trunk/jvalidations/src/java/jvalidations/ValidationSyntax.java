@@ -1,9 +1,11 @@
 package jvalidations;
 
-public interface ValidationSyntax {
-    Conditionable that(String accessor, Validation validation, ElseClause elseClause);
+import org.hamcrest.Matcher;
 
-    Conditionable that(Cardinality cardinality, Validation validation, ElseClause elseClause);
+public interface ValidationSyntax {
+    Conditionable that(String accessor, Matcher matcher, ElseClause elseClause);
+
+    Conditionable that(Cardinality cardinality, Matcher matcher, ElseClause elseClause);
 
     Conditionable associated(String accessor, Object report);
 }

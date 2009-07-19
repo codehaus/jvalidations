@@ -1,9 +1,12 @@
 package jvalidations.twominute;
 
-import static jvalidations.SyntaxSupport._else;
+import jvalidations.JValidations;
 import static jvalidations.SyntaxSupport.Parameters.fieldName;
-import jvalidations.*;
-import static jvalidations.validations.BlankValidation.isNotBlank;
+import static jvalidations.SyntaxSupport._else;
+import jvalidations.Validatable;
+import jvalidations.ValidationSyntax;
+import static org.hamcrest.core.IsNot.not;
+import static org.hamcrest.text.IsEmptyString.isEmptyString;
 
 public class TwoMinuteTutorial {
     /**
@@ -74,7 +77,7 @@ public class TwoMinuteTutorial {
             }
 
             public void buildValidation(ValidationSyntax validates, ValidationReport report) {
-                //Your validation rules will go here
+                //Your matcher rules will go here
             }
         }
     }//ignore
@@ -100,10 +103,8 @@ public class TwoMinuteTutorial {
      * <b>field_name</b> is a string naming the field of this class that must be validated.
      * <br/>
      * <br/>
-     * <b>validation_rule</b> is an instance of the JValidations interface <interface>Validation</interface>.  You will find many
-     * implementations of this interface available as static methods on <class>SyntaxSupport.Validations</class>.  Alternatively, you can find
-     * the same static methods on each of the classes in the package <package>jvalidations.validations</package> -
-     * <class>BlankValidation</class> for example has the static methods <method>isBlank()</method> and <method>isNotBlank()</method>.
+     * <b>validation_rule</b> is an instance of the <a href="http://code.google.com/p/hamcrest/">Hamcrest</a> interface <interface>org.hamcrest.Matcher</interface>.  You will find many
+     * implementations of this interface available as in the hamcrest core jar, and the hamcrest library jar, which are linked to from the <a href="../dependencies.html">dependencies page</a>.
      * <br/>
      * <br/>
      * <b>else_clause</b> is an instance of the JValidations interface <interface>ElseClause</interface>.  The <b>else_clause</b> states
@@ -115,12 +116,12 @@ public class TwoMinuteTutorial {
     public static class StepFour {//ignore
         public interface ValidationReport{}//ignore
         public void buildValidation(ValidationSyntax validates, ValidationReport report) {
-            validates.that("name", isNotBlank(), _else(report,"nameIsBlank"));
+            validates.that("name", not(isEmptyString()), _else(report,"nameIsBlank"));
         }
     }//ignore
 
     /**
-     * <b>Note</b> that <method>isNotBlank()</method> and <method>_else()</method> have been statically imported for readability.
+     * <b>Note</b> that phrases <method>not(isEmptyString())</method> and <method>_else()</method> have been made possible through static imports.
      * <br/>
      * <br/>
      * So you can see that this <b>else_clause</b> is saying "call the method <method>nameIsBlank()</method> on the <b>report</b> instance
@@ -147,7 +148,7 @@ public class TwoMinuteTutorial {
     public static class StepSix {//ignore
         public interface ValidationReport{}//ignore
         public void buildValidation(ValidationSyntax validates, ValidationReport report) {
-            validates.that("name", isNotBlank(), _else(report,"isBlank", fieldName()));
+            validates.that("name", not(isEmptyString()), _else(report,"isBlank", fieldName()));
         }
     }//ignore
 
@@ -157,8 +158,8 @@ public class TwoMinuteTutorial {
     public static class StepSeven {//ignore
         public interface ValidationReport{}//ignore
         public void buildValidation(ValidationSyntax validates, ValidationReport report) {
-            validates.that("name", isNotBlank(), _else(report,"isBlank", fieldName()));
-            validates.that("email", isNotBlank(), _else(report,"isBlank", fieldName()));
+            validates.that("name", not(isEmptyString()), _else(report,"isBlank", fieldName()));
+            validates.that("email", not(isEmptyString()), _else(report,"isBlank", fieldName()));
         }
     }//ignore
 
@@ -177,8 +178,8 @@ public class TwoMinuteTutorial {
                 this.email = email;//ignore
             }//ignore
             public void buildValidation(ValidationSyntax validates, ValidationReport report) {//ignore
-                validates.that("name", isNotBlank(), _else(report,"isBlank", fieldName()));//ignore
-                validates.that("email", isNotBlank(), _else(report,"isBlank", fieldName()));//ignore
+                validates.that("name", not(isEmptyString()), _else(report,"isBlank", fieldName()));//ignore
+                validates.that("email", not(isEmptyString()), _else(report,"isBlank", fieldName()));//ignore
             }//ignore
             public interface ValidationReport {//ignore
                 void isBlank(String fieldName);//ignore
