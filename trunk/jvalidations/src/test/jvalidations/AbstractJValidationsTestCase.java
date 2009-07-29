@@ -1,19 +1,20 @@
 package jvalidations;
 
+import static jedi.functional.Coercions.asList;
 import static jedi.functional.Coercions.list;
 import static jedi.functional.FunctionalPrimitives.collect;
-import jedi.functional.Coercions;
-import org.jmock.Mock;
-import org.jmock.MockObjectTestCase;
+import junit.framework.TestCase;
 import org.hamcrest.Matcher;
+import org.mockito.Mockito;
+import static org.mockito.Mockito.when;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 import java.util.List;
 
-public abstract class AbstractJValidationsTestCase extends MockObjectTestCase {
+public abstract class AbstractJValidationsTestCase extends TestCase {
     protected MockSelectors mock() {
-        return new MockSelectors(this);
+        return new MockSelectors();
     }
 
     protected void assertAllFalse(List<Boolean> booleans) {
@@ -69,61 +70,51 @@ public abstract class AbstractJValidationsTestCase extends MockObjectTestCase {
     }
 
     protected static class MockSelectors {
-        private final MockObjectTestCase testCase;
-
-        public MockSelectors(MockObjectTestCase testCase) {
-            this.testCase = testCase;
-        }
 
         public MockMatcherBuilder matcher() {
-            return new MockMatcherBuilder(testCase);
+            return new MockMatcherBuilder();
         }
 
         public MockCardinalityBuilder cardinality() {
-            return new MockCardinalityBuilder(testCase);
+            return new MockCardinalityBuilder();
         }
     }
 
     protected static class MockCardinalityBuilder {
-        private final MockObjectTestCase testCase;
-        private final Mock mock;
+        private final Cardinality mock;
 
-        public MockCardinalityBuilder(MockObjectTestCase testCase) {
-            this.testCase = testCase;
-            mock = testCase.mock(Cardinality.class);
+        public MockCardinalityBuilder() {
+            mock = Mockito.mock(Cardinality.class);
         }
 
         public MockCardinalityBuilder withRequiredCount(int i) {
-            mock.expects(testCase.atLeastOnce()).method("requiredCount").will(testCase.returnValue(i));
+            when(mock.requiredCount()).thenReturn(i);
             return this;
         }
 
         public Cardinality build() {
-            return (Cardinality) mock.proxy();
+            return mock;
         }
 
         public MockCardinalityBuilder withAccessors(Accessor... accessors) {
-            mock.expects(testCase.atLeastOnce()).method("getAccessors")
-                    .will(testCase.returnValue(Coercions.asList(accessors)));
+            when(mock.getAccessors()).thenReturn(asList(accessors));
             return this;
         }
     }
 
     protected static class MockMatcherBuilder {
-        private final MockObjectTestCase testCase;
-        private final Mock mock;
+        private final Matcher mock;
 
-        public MockMatcherBuilder(MockObjectTestCase testCase) {
-            this.testCase = testCase;
-            mock = testCase.mock(Matcher.class);
+        public MockMatcherBuilder() {
+            mock = Mockito.mock(Matcher.class);
         }
 
         public Matcher build() {
-            return (Matcher) mock.proxy();
+            return mock;
         }
 
         public MockMatcherBuilder withCheck(boolean result) {
-            mock.stubs().method("matches").withAnyArguments().will(testCase.returnValue(result));
+            when(mock.matches(Mockito.any(Object.class))).thenReturn(result);
             return this;
         }
 

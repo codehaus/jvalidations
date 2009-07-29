@@ -4,7 +4,12 @@ import static jvalidations.SyntaxSupport.Parameters.fieldName;
 import static jvalidations.SyntaxSupport.Parameters.requiredCount;
 import static jvalidations.SyntaxSupport.Parameters.actualCount;
 import static jvalidations.SyntaxSupport._else;
-import org.jmock.Mock;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.*;
+import org.junit.Assert;
 
 public class SyntaxSupportTest extends AbstractJValidationsTestCase {
 
@@ -12,30 +17,32 @@ public class SyntaxSupportTest extends AbstractJValidationsTestCase {
         int requiredCount = 4;
         int actualCount = 3;
         String fieldName = "fieldName";
-        Mock mockCallback = mock(Callback.class);
-        mockCallback.expects(once()).method("callbackMethod").with(eq(fieldName), eq(requiredCount), eq(actualCount));
+        Callback callback = Mockito.mock(Callback.class);
 
-        ElseClause elseClause = _else(mockCallback.proxy(), "callbackMethod", fieldName(), requiredCount(), actualCount());
 
         Cardinality cardinality = mock().cardinality().withAccessors(new FieldAccessor(fieldName))
                 .withRequiredCount(requiredCount).build();
+
+        ElseClause elseClause = _else(callback, "callbackMethod", fieldName(), requiredCount(), actualCount());
         elseClause.execute(null, cardinality, null, actualCount);
+
+        verify(callback).callbackMethod(fieldName,requiredCount, actualCount);
     }
 
     public void test_elseClauseThrowsRuntimeExceptionsDirectly() {
-        Mock mockCallback = mock(Callback.class);
+        Callback callback = Mockito.mock(Callback.class);
         RuntimeException deliberate = new RuntimeException("Deliberate");
-        mockCallback.expects(once()).method("callbackMethod").withAnyArguments().will(throwException(deliberate));
+        doThrow(deliberate).when(callback).callbackMethod(anyString(), anyInt(), anyInt());
 
-        ElseClause elseClause = _else(mockCallback.proxy(), "callbackMethod", fieldName(), requiredCount(), actualCount());
+        ElseClause elseClause = _else(callback, "callbackMethod", fieldName(), requiredCount(), actualCount());
 
         Cardinality cardinality = mock().cardinality().withAccessors(new FieldAccessor(""))
                 .withRequiredCount(1).build();
         try {
             elseClause.execute(null, cardinality, null, 1);
-            fail("Did not get expected exception");
+            Assert.fail("Did not get expected exception");
         } catch (RuntimeException e) {
-            assertSame(deliberate, e);
+            Assert.assertSame(deliberate, e);
         }
     }
 
@@ -46,16 +53,16 @@ public class SyntaxSupportTest extends AbstractJValidationsTestCase {
         Cardinality cardinality = mock().cardinality().withAccessors(new FieldAccessor(""))
                 .withRequiredCount(1).build();
         elseClause.execute(null, cardinality, null, 1);
-        assertTrue(callback.wasCalled());
+        Assert.assertTrue(callback.wasCalled());
     }
 
     public void test_elseThrowsAnInformativeExceptionIfMethodNotFound() {
         ElseClause clause = _else(new Object(), "this method does not exist");
         try {
             clause.execute(new Object(), null,null,0);
-            fail("Did not throw nice exception");
+            Assert.fail("Did not throw nice exception");
         } catch (RuntimeException e) {
-            assertEquals("Could not find method 'this method does not exist' in '" + Object.class +"'", e.getMessage());
+            Assert.assertEquals("Could not find method 'this method does not exist' in '" + Object.class +"'", e.getMessage());
         }
     }
 

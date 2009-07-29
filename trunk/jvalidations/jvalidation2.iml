@@ -21,15 +21,6 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/jmock-1.1.0RC1.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/jedi_2.3_jdk1.5.jar!/" />
         </CLASSES>
         <JAVADOC />
@@ -49,6 +40,15 @@
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/hamcrest-library-1.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/mockito-all-1.7.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

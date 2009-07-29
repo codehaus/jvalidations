@@ -1,17 +1,16 @@
 package jvalidations;
 
-import static jedi.functional.Coercions.list;
+import junit.framework.TestCase;
+import static jvalidations.SyntaxSupport.Cardinalities.atLeast;
+import static jvalidations.SyntaxSupport.Conditions.condition;
 import static jvalidations.SyntaxSupport.Parameters.fieldName;
 import static jvalidations.SyntaxSupport._else;
-import org.jmock.Mock;
-import org.jmock.MockObjectTestCase;
-import org.jmock.core.Constraint;
 import org.hamcrest.Matcher;
-import org.hamcrest.core.IsNot;
-import org.hamcrest.core.IsNull;
 import static org.hamcrest.core.IsNull.notNullValue;
+import static org.mockito.Matchers.same;
+import static org.mockito.Mockito.*;
 
-public class DefaultValidationBuilderTest extends MockObjectTestCase {
+public class DefaultValidationBuilderTest extends TestCase {
 
     public void testDoesNothingWhenValidationSucceeds() {
         DomainObject domainObject = new DomainObject<ValidationReport>("mike", "mike@email.com") {
@@ -21,7 +20,9 @@ public class DefaultValidationBuilderTest extends MockObjectTestCase {
             }
         };
 
-        doValidation(domainObject, mock(ValidationReport.class));
+        final ValidationReport report = mock(ValidationReport.class);
+        doValidation(domainObject, report);
+        verifyZeroInteractions(report);
     }
 
     public void testCanPassValidationParametersToTheCallbackWhenValidationFails() {
@@ -33,7 +34,9 @@ public class DefaultValidationBuilderTest extends MockObjectTestCase {
             }
         };
 
-        doValidation(domainObject, validationReport("expectedCallback", eq("expected value")));
+        final ValidationReport report = mock(ValidationReport.class);
+        doValidation(domainObject, report);
+        verify(report).expectedCallback("expected value");
     }
 
     public void testCanMakeACallbackForAllFailedValidations() {
@@ -44,22 +47,22 @@ public class DefaultValidationBuilderTest extends MockObjectTestCase {
             }
         };
 
-        doValidation(domainObject, validationReport("expectedCallback", "anotherExpectedCallback"));
+        final ValidationReport report = mock(ValidationReport.class);
+        doValidation(domainObject, report);
+        verify(report).expectedCallback();
+        verify(report).anotherExpectedCallback();
     }
 
     public void testCanStateCardinalityForValidationRules() {
-        Mock mock = mock(Cardinality.class);
-        mock.expects(once()).method("getAccessors").will(returnValue(list(new FieldAccessor("name"), new FieldAccessor("email"))));
-        mock.expects(once()).method("requiresMoreChecks").with(eq(0), eq(2)).will(returnValue(true));
-        mock.expects(once()).method("requiresMoreChecks").with(eq(0), eq(1)).will(returnValue(true));
-        mock.expects(once()).method("happyWith").with(eq(0)).will(returnValue(false));
-        final Cardinality cardinality = (Cardinality) mock.proxy();
         DomainObject domainObject = new DomainObject<ValidationReport>("mike", "mike@email.com") {
             public void buildValidation(ValidationSyntax validates, ValidationReport report) {
-                validates.that(cardinality, willFailValidation("mike", "mike@email.com"), _else(report, "expectedCallback"));
+                validates.that(atLeast(1).of("name", "email"), willFailValidation("mike", "mike@email.com"),
+                        _else(report, "expectedCallback"));
             }
         };
-        doValidation(domainObject, validationReport("expectedCallback"));
+        final ValidationReport report = mock(ValidationReport.class);
+        doValidation(domainObject, report);
+        verify(report).expectedCallback();
     }
 
     public void testCanApplyConditionsToValidationRules() {
@@ -68,14 +71,18 @@ public class DefaultValidationBuilderTest extends MockObjectTestCase {
                 validates.that("name", willFailValidation("mike"), _else(report, "expectedCallback")).on(willPassCondition());
             }
         };
-        doValidation(domainObject, validationReport("expectedCallback"));
+        ValidationReport report = mock(ValidationReport.class);
+        doValidation(domainObject, report);
+        verify(report).expectedCallback();
 
         domainObject = new DomainObject<ValidationReport>("mike", "mike@email.com") {
             public void buildValidation(ValidationSyntax validates, ValidationReport report) {
                 validates.that("name", willFailValidation(), _else(report, "expectedCallback")).on(willFailCondition());
             }
         };
-        doValidation(domainObject, mock(ValidationReport.class));
+        report = mock(ValidationReport.class);
+        doValidation(domainObject, report);
+        verifyZeroInteractions(report);
     }
 
     public void testCanTagValidationRulesAndExcludeThemDuringValidation() {
@@ -84,26 +91,31 @@ public class DefaultValidationBuilderTest extends MockObjectTestCase {
                 validates.that("name", willFailValidation("mike"), _else(report, "expectedCallback")).tags("some tag");
             }
         };
-        doValidation(domainObject, validationReport("expectedCallback"));
+        ValidationReport report = mock(ValidationReport.class);
+        doValidation(domainObject, report);
+        verify(report).expectedCallback();
 
         domainObject = new DomainObject<ValidationReport>("mike", null) {
             public void buildValidation(ValidationSyntax validates, ValidationReport report) {
                 validates.that("name", willFailValidation(), _else(report, "expectedCallback")).tags("some tag");
             }
         };
-        doValidation(domainObject, mock(ValidationReport.class), "some tag");
+        report = mock(ValidationReport.class);
+        doValidation(domainObject, report, "some tag");
+        verifyZeroInteractions(report);
+
     }
 
     public void testRemovalOfTagsWorksForNestedObjects() {
         NestedDomainObject innermostNested = new NestedDomainObject<ValidationReport>("over there") {
             public void buildValidation(ValidationSyntax validates, ValidationReport report) {
-                validates.that("location", (Matcher) newDummy(Matcher.class), _else(report, "expectedCallback", fieldName())).tags("tag");
+                validates.that("location", null, _else(report, "expectedCallback", fieldName())).tags("tag");
             }
         };
 
         NestedDomainObject outermostNested = new NestedDomainObject<ValidationReport>(innermostNested) {
             public void buildValidation(ValidationSyntax validates, ValidationReport report) {
-                validates.that("location", (Matcher) newDummy(Matcher.class), _else(report, "expectedCallback", fieldName())).tags("tag");
+                validates.that("location", null, _else(report, "expectedCallback", fieldName())).tags("tag");
                 validates.associated("nested", report);
             }
         };
@@ -112,34 +124,40 @@ public class DefaultValidationBuilderTest extends MockObjectTestCase {
                 validates.associated("nested", report);
             }
         };
-        doValidation(domainObject, mock(ValidationReport.class), "tag");
+        ValidationReport report = mock(ValidationReport.class);
+        doValidation(domainObject, report, "tag");
+        verifyZeroInteractions(report);
     }
 
     public void testStopOnFirstFailureDoesNotCountFirstTagRemovalAsFailure() {
         DomainObject domainObject = new DomainObject<ValidationReport>("mike", "email") {
             public void buildValidation(ValidationSyntax validates, ValidationReport report) {
-                validates.that(SyntaxSupport.Cardinalities.atLeast(1).of("name"), (Matcher) newDummy(Matcher.class), _else(report, "unexpectedCallback")).on(SyntaxSupport.Conditions.condition("name",
+                validates.that(atLeast(1).of("name"), null, _else(report, "unexpectedCallback")).on(condition("name",
                         notNullValue())).tags("some tag");
-                validates.that("email", willFailValidation("email"), _else(report, "expectedCallback", SyntaxSupport.Parameters.fieldName()));
+                validates.that("email", willFailValidation("email"), _else(report, "expectedCallback",
+                        fieldName()));
             }
         };
         DefaultValidationBuilder builder = new DefaultValidationBuilder();
-        Mock mockReport = mock(ValidationReport.class);
-        mockReport.expects(once()).method("expectedCallback").with(eq("email"));
-        domainObject.buildValidation(builder, mockReport.proxy());
+        ValidationReport mockReport = mock(ValidationReport.class);
+        domainObject.buildValidation(builder, mockReport);
         builder.removeTags("some tag");
         builder.stopOnFirstFailure();
         builder.validate(domainObject);
+        verify(mockReport).expectedCallback("email");
     }
 
     public void testCanMixConditionsAndTags() {
         DomainObject domainObject = new DomainObject<ValidationReport>("mike", null) {
             public void buildValidation(ValidationSyntax validates, ValidationReport report) {
-                validates.that("name", willFailValidation(), _else(report, "expectedCallback")).on(willFailCondition()).tags("some tag");
+                validates.that("name", willFailValidation(), _else(report, "expectedCallback")).on(willFailCondition())
+                        .tags("some tag");
             }
         };
-        doValidation(domainObject, mock(ValidationReport.class), "some tag");
-        doValidation(domainObject, mock(ValidationReport.class));
+        ValidationReport report = mock(ValidationReport.class);
+        doValidation(domainObject, report, "some tag");
+        doValidation(domainObject, report);
+        verifyZeroInteractions(report);
     }
 
 
@@ -149,7 +167,9 @@ public class DefaultValidationBuilderTest extends MockObjectTestCase {
                 validates.that("aMethodToGetAge()", willFailValidation(24), _else(report, "expectedCallback"));
             }
         };
-        doValidation(domainObject, validationReport("expectedCallback"));
+        ValidationReport report = mock(ValidationReport.class);
+        doValidation(domainObject, report);
+        verify(report).expectedCallback();
     }
 
     public void testCanValidateAssociatedObjects() {
@@ -168,17 +188,21 @@ public class DefaultValidationBuilderTest extends MockObjectTestCase {
                 validates.associated("nested", report);
             }
         };
-        doValidation(domainObject, validationReport("expectedCallback", eq("nested.nested.location")));
+        ValidationReport report = mock(ValidationReport.class);
+        doValidation(domainObject, report);
+        verify(report).expectedCallback("nested.nested.location");
     }
 
     public void testCanFailEarlyWithoutAssociatedObjects() {
         DomainObject domainObject = new DomainObject("name", "email") {
             public void buildValidation(ValidationSyntax validates, Object report) {
                 validates.that("name", willFailValidation("name"), _else(report, "expectedCallback"));
-                validates.that("email", (Matcher) newDummy(Matcher.class), _else(report, "unexpectedCallback"));
+                validates.that("email", null, _else(report, "unexpectedCallback"));
             }
         };
-        doFailEarlyValidation(domainObject, validationReport("expectedCallback").proxy());
+        ValidationReport report = mock(ValidationReport.class);
+        doFailEarlyValidation(domainObject, report);
+        verify(report).expectedCallback();
     }
 
     private void doFailEarlyValidation(DomainObject domainObject, Object validationReport) {
@@ -192,16 +216,18 @@ public class DefaultValidationBuilderTest extends MockObjectTestCase {
         NestedDomainObject nested = new NestedDomainObject<ValidationReport>("over there") {
             public void buildValidation(ValidationSyntax validates, ValidationReport report) {
                 validates.that("location", willFailValidation("over there"), _else(report, "expectedCallback"));
-                validates.that("location", (Matcher) newDummy(Matcher.class), _else(report, "unexpectedCallback"));
+                validates.that("location", null, _else(report, "unexpectedCallback"));
             }
         };
         DomainObject domainObject = new DomainObject<ValidationReport>(nested) {
             public void buildValidation(ValidationSyntax validates, ValidationReport report) {
                 validates.associated("nested", report);
-                validates.that("email", (Matcher) newDummy(Matcher.class), _else(report, "unexpectedCallback"));
+                validates.that("email", null, _else(report, "unexpectedCallback"));
             }
         };
-        doFailEarlyValidation(domainObject, validationReport("expectedCallback").proxy());
+        ValidationReport report = mock(ValidationReport.class);
+        doFailEarlyValidation(domainObject, report);
+        verify(report).expectedCallback();
     }
 
     public void testAssociatedCanDealWillNullReferences() {
@@ -218,35 +244,16 @@ public class DefaultValidationBuilderTest extends MockObjectTestCase {
         doValidation(domainObject, mock(ValidationReport.class));
     }
 
-    private Mock validationReport(String expectedCallbackMethod, Constraint constraints) {
-        Mock report = mock(ValidationReport.class);
-        report.expects(once()).method(expectedCallbackMethod).with(constraints);
-        return report;
-    }
-
-    private Mock validationReport(String... expectedCallbackMethods) {
-        Mock report = mock(ValidationReport.class);
-        for (String expectedCallbackMethod : expectedCallbackMethods) {
-            report.expects(once()).method(expectedCallbackMethod);
-
-        }
-        return report;
-    }
-
     private ParameterLookupForCallbackMethod parameterLookup(Matcher matcher, String parameterValue) {
-        final Mock parameter = mock(ParameterLookupForCallbackMethod.class);
-        parameter.expects(once()).method("type")
-                .with(isA(DomainObject.class), isA(Cardinality.class), same(matcher))
-                .will(returnValue(String.class));
-        parameter.expects(once()).method("value")
-                .with(isA(DomainObject.class), isA(Cardinality.class), same(matcher), eq(0)).will(returnValue(
-                parameterValue));
-        return (ParameterLookupForCallbackMethod) parameter.proxy();
+        final ParameterLookupForCallbackMethod parameter = mock(ParameterLookupForCallbackMethod.class);
+        when(parameter.type(any(DomainObject.class), any(Cardinality.class), same(matcher))).thenReturn(String.class);
+        when(parameter.value(any(DomainObject.class), any(Cardinality.class), same(matcher), eq(0))).thenReturn(parameterValue);
+        return parameter;
     }
 
-    private void doValidation(DomainObject domainObject, Mock report, String... tagsToRemove) {
+    private void doValidation(DomainObject domainObject, Object report, String... tagsToRemove) {
         DefaultValidationBuilder builder = new DefaultValidationBuilder();
-        domainObject.buildValidation(builder, report.proxy());
+        domainObject.buildValidation(builder, report);
         builder.removeTags(tagsToRemove);
         builder.validate(domainObject);
     }
@@ -268,19 +275,19 @@ public class DefaultValidationBuilderTest extends MockObjectTestCase {
     }
 
     private Matcher willFailValidation(Object... value) {
-        return validation(false, value);
+        return matcher(false, value);
     }
 
     private Matcher willSucceedValidation(Object... value) {
-        return validation(true, value);
+        return matcher(true, value);
     }
 
-    private Matcher validation(final boolean result, Object... values) {
-        Mock mock = mock(Matcher.class);
+    private Matcher matcher(final boolean result, Object... values) {
+        Matcher mock = mock(Matcher.class);
         for (Object value : values) {
-            mock.expects(atLeastOnce()).method("matches").with(eq(value)).will(returnValue(result));
+            when(mock.matches(value)).thenReturn(result);
         }
-        return (Matcher) mock.proxy();
+        return mock;
     }
 
     public static abstract class DomainObject<R> implements Validatable<R> {
