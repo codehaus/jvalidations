@@ -1,18 +1,17 @@
 package jvalidations;
 
-import static jvalidations.SyntaxSupport.Parameters.fieldName;
-import static jvalidations.SyntaxSupport.Parameters.requiredCount;
-import static jvalidations.SyntaxSupport.Parameters.actualCount;
+import static jvalidations.SyntaxSupport.Parameters.*;
 import static jvalidations.SyntaxSupport._else;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.*;
 import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
+import static org.mockito.Matchers.anyString;
+import org.mockito.Mockito;
+import static org.mockito.Mockito.*;
 
 public class SyntaxSupportTest extends AbstractJValidationsTestCase {
 
+    @Test
     public void test_elseClauseCallsTheRightMethodWithTheRightParameters() {
         int requiredCount = 4;
         int actualCount = 3;
@@ -29,6 +28,7 @@ public class SyntaxSupportTest extends AbstractJValidationsTestCase {
         verify(callback).callbackMethod(fieldName,requiredCount, actualCount);
     }
 
+    @Test
     public void test_elseClauseThrowsRuntimeExceptionsDirectly() {
         Callback callback = Mockito.mock(Callback.class);
         RuntimeException deliberate = new RuntimeException("Deliberate");
@@ -46,6 +46,7 @@ public class SyntaxSupportTest extends AbstractJValidationsTestCase {
         }
     }
 
+    @Test
     public void test_elseFindsMethodsInSuperClass() {
         ExtendsCallbackForTests callback = new ExtendsCallbackForTests();
         ElseClause elseClause = _else(callback, "callbackMethod", fieldName(), requiredCount(), actualCount());
@@ -56,16 +57,18 @@ public class SyntaxSupportTest extends AbstractJValidationsTestCase {
         Assert.assertTrue(callback.wasCalled());
     }
 
+    @Test
     public void test_elseThrowsAnInformativeExceptionIfMethodNotFound() {
         ElseClause clause = _else(new Object(), "this method does not exist");
         try {
             clause.execute(new Object(), null,null,0);
             Assert.fail("Did not throw nice exception");
         } catch (RuntimeException e) {
-            Assert.assertEquals("Could not find method 'this method does not exist' in '" + Object.class +"'", e.getMessage());
+            assertEquals("Could not find method 'this method does not exist' in '" + Object.class +"'", e.getMessage());
         }
     }
 
+    @Test
     public void testCanReturnConstantsAsParameters() {
         String value = "This is a constant constant";
         ParameterLookupForCallbackMethod param = SyntaxSupport.Parameters.constant(value);
