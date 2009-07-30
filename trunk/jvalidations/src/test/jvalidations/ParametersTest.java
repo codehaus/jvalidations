@@ -2,26 +2,28 @@ package jvalidations;
 
 import static jedi.functional.Coercions.array;
 import static jedi.functional.Coercions.asList;
-import static jedi.functional.FunctionalPrimitives.collect;
-import org.hamcrest.core.DescribedAs;
-import org.hamcrest.core.IsNull;
 import static org.hamcrest.core.DescribedAs.describedAs;
 import static org.hamcrest.core.IsNull.nullValue;
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 
 public class ParametersTest extends AbstractJValidationsTestCase {
 
+    @Test
     public void testRequiredCountParameter() {
         ParameterLookupForCallbackMethod requiredCount = SyntaxSupport.Parameters.requiredCount();
         assertEquals(2, requiredCount.value(null, mock().cardinality().withRequiredCount(2).build(), null,0));
         assertEquals(Integer.TYPE, requiredCount.type(null,null,null));
     }
 
+    @Test
     public void testActualCountParameter() {
         ParameterLookupForCallbackMethod actual = SyntaxSupport.Parameters.actualCount();
         assertEquals(2, actual.value(null, null, null,2));
         assertEquals(Integer.TYPE, actual.type(null,null,null));
     }
 
+    @Test
     public void testFieldNamesParameter() {
         ParameterLookupForCallbackMethod fieldNames = SyntaxSupport.Parameters.fieldNames();
         String[] expectedFieldNames = array("a", "b");
@@ -31,6 +33,7 @@ public class ParametersTest extends AbstractJValidationsTestCase {
         assertEquals(expectedFieldNames.getClass(), fieldNames.type(null,null,null));
     }
 
+    @Test
     public void testFieldNameParameter() {
         ParameterLookupForCallbackMethod fieldName = SyntaxSupport.Parameters.fieldName();
         String actualFieldName = (String) fieldName.value(null,
@@ -39,6 +42,7 @@ public class ParametersTest extends AbstractJValidationsTestCase {
         assertEquals(String.class, fieldName.type(null,null,null));
     }
 
+    @Test
     public void testValidationFailureDescriptionParameter() {
         ParameterLookupForCallbackMethod description = SyntaxSupport.Parameters.failureDescription();
         String actualFieldName = (String) description.value(null,

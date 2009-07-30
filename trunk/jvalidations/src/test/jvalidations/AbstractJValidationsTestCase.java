@@ -3,8 +3,8 @@ package jvalidations;
 import static jedi.functional.Coercions.asList;
 import static jedi.functional.Coercions.list;
 import static jedi.functional.FunctionalPrimitives.collect;
-import junit.framework.TestCase;
 import org.hamcrest.Matcher;
+import org.junit.Assert;
 import org.mockito.Mockito;
 import static org.mockito.Mockito.when;
 
@@ -12,7 +12,7 @@ import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 import java.util.List;
 
-public abstract class AbstractJValidationsTestCase extends TestCase {
+public abstract class AbstractJValidationsTestCase {
     protected MockSelectors mock() {
         return new MockSelectors();
     }
@@ -28,7 +28,7 @@ public abstract class AbstractJValidationsTestCase extends TestCase {
     private void assertBooleans(Boolean expected, List<Boolean> booleans) {
         int i = 1;
         for (Boolean aBoolean : booleans) {
-            assertEquals("" + i, expected, aBoolean);
+            Assert.assertEquals("" + i, expected, aBoolean);
             i++;
         }
     }
@@ -60,7 +60,7 @@ public abstract class AbstractJValidationsTestCase extends TestCase {
     protected void assertAllNull(List<Object> objects) {
         int i = 1;
         for (Object object : objects) {
-            assertNull("" + i, object);
+            Assert.assertNull("" + i, object);
             i++;
         }
     }

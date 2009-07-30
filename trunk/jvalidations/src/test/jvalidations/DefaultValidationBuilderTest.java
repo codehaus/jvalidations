@@ -1,17 +1,18 @@
 package jvalidations;
 
-import junit.framework.TestCase;
 import static jvalidations.SyntaxSupport.Cardinalities.atLeast;
 import static jvalidations.SyntaxSupport.Conditions.condition;
 import static jvalidations.SyntaxSupport.Parameters.fieldName;
 import static jvalidations.SyntaxSupport._else;
 import org.hamcrest.Matcher;
 import static org.hamcrest.core.IsNull.notNullValue;
+import org.junit.Test;
 import static org.mockito.Matchers.same;
 import static org.mockito.Mockito.*;
 
-public class DefaultValidationBuilderTest extends TestCase {
+public class DefaultValidationBuilderTest  {
 
+    @Test
     public void testDoesNothingWhenValidationSucceeds() {
         DomainObject domainObject = new DomainObject<ValidationReport>("mike", "mike@email.com") {
             public void buildValidation(ValidationSyntax validates, ValidationReport report) {
@@ -25,6 +26,7 @@ public class DefaultValidationBuilderTest extends TestCase {
         verifyZeroInteractions(report);
     }
 
+    @Test
     public void testCanPassValidationParametersToTheCallbackWhenValidationFails() {
         DomainObject domainObject = new DomainObject<ValidationReport>("mike", null) {
             public void buildValidation(ValidationSyntax validates, ValidationReport report) {
@@ -39,6 +41,7 @@ public class DefaultValidationBuilderTest extends TestCase {
         verify(report).expectedCallback("expected value");
     }
 
+    @Test
     public void testCanMakeACallbackForAllFailedValidations() {
         DomainObject domainObject = new DomainObject<ValidationReport>("mike", "mike@email.com") {
             public void buildValidation(ValidationSyntax validates, ValidationReport report) {
@@ -53,6 +56,7 @@ public class DefaultValidationBuilderTest extends TestCase {
         verify(report).anotherExpectedCallback();
     }
 
+    @Test
     public void testCanStateCardinalityForValidationRules() {
         DomainObject domainObject = new DomainObject<ValidationReport>("mike", "mike@email.com") {
             public void buildValidation(ValidationSyntax validates, ValidationReport report) {
@@ -65,6 +69,7 @@ public class DefaultValidationBuilderTest extends TestCase {
         verify(report).expectedCallback();
     }
 
+    @Test
     public void testCanApplyConditionsToValidationRules() {
         DomainObject domainObject = new DomainObject<ValidationReport>("mike", null) {
             public void buildValidation(ValidationSyntax validates, ValidationReport report) {
@@ -85,6 +90,7 @@ public class DefaultValidationBuilderTest extends TestCase {
         verifyZeroInteractions(report);
     }
 
+    @Test
     public void testCanTagValidationRulesAndExcludeThemDuringValidation() {
         DomainObject domainObject = new DomainObject<ValidationReport>("mike", null) {
             public void buildValidation(ValidationSyntax validates, ValidationReport report) {
@@ -106,6 +112,7 @@ public class DefaultValidationBuilderTest extends TestCase {
 
     }
 
+    @Test
     public void testRemovalOfTagsWorksForNestedObjects() {
         NestedDomainObject innermostNested = new NestedDomainObject<ValidationReport>("over there") {
             public void buildValidation(ValidationSyntax validates, ValidationReport report) {
@@ -129,6 +136,7 @@ public class DefaultValidationBuilderTest extends TestCase {
         verifyZeroInteractions(report);
     }
 
+    @Test
     public void testStopOnFirstFailureDoesNotCountFirstTagRemovalAsFailure() {
         DomainObject domainObject = new DomainObject<ValidationReport>("mike", "email") {
             public void buildValidation(ValidationSyntax validates, ValidationReport report) {
@@ -147,6 +155,7 @@ public class DefaultValidationBuilderTest extends TestCase {
         verify(mockReport).expectedCallback("email");
     }
 
+    @Test
     public void testCanMixConditionsAndTags() {
         DomainObject domainObject = new DomainObject<ValidationReport>("mike", null) {
             public void buildValidation(ValidationSyntax validates, ValidationReport report) {
@@ -161,6 +170,7 @@ public class DefaultValidationBuilderTest extends TestCase {
     }
 
 
+    @Test
     public void testAccessorsCanBeMethods() {
         DomainObject domainObject = new DomainObject<ValidationReport>(24) {
             public void buildValidation(ValidationSyntax validates, ValidationReport report) {
@@ -172,6 +182,7 @@ public class DefaultValidationBuilderTest extends TestCase {
         verify(report).expectedCallback();
     }
 
+    @Test
     public void testCanValidateAssociatedObjects() {
         NestedDomainObject innermostNested = new NestedDomainObject<ValidationReport>("over there") {
             public void buildValidation(ValidationSyntax validates, ValidationReport report) {
@@ -193,6 +204,7 @@ public class DefaultValidationBuilderTest extends TestCase {
         verify(report).expectedCallback("nested.nested.location");
     }
 
+    @Test
     public void testCanFailEarlyWithoutAssociatedObjects() {
         DomainObject domainObject = new DomainObject("name", "email") {
             public void buildValidation(ValidationSyntax validates, Object report) {
@@ -212,6 +224,7 @@ public class DefaultValidationBuilderTest extends TestCase {
         builder.validate(domainObject);
     }
 
+    @Test
     public void testCanFailEarlyWithAssociatedObjects() {
         NestedDomainObject nested = new NestedDomainObject<ValidationReport>("over there") {
             public void buildValidation(ValidationSyntax validates, ValidationReport report) {
@@ -230,6 +243,7 @@ public class DefaultValidationBuilderTest extends TestCase {
         verify(report).expectedCallback();
     }
 
+    @Test
     public void testAssociatedCanDealWillNullReferences() {
         NestedDomainObject nested = new NestedDomainObject<ValidationReport>((NestedDomainObject) null) {
             public void buildValidation(ValidationSyntax validates, ValidationReport report) {

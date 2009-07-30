@@ -3,11 +3,14 @@ package jvalidations;
 import static jedi.functional.Coercions.list;
 import static jedi.functional.FunctionalPrimitives.collect;
 import static jvalidations.Accessor.Functors.name;
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 
 import java.util.List;
 
 public class CardinalityTest extends AbstractJValidationsTestCase {
     
+    @Test
     public void testAtLeastCardinality() {
         Cardinality atLeastTwo = SyntaxSupport.Cardinalities.atLeast(2);
 
@@ -24,6 +27,7 @@ public class CardinalityTest extends AbstractJValidationsTestCase {
     }
 
 
+    @Test
     public void testAllCardinality() {
         Cardinality allOfTwo = SyntaxSupport.Cardinalities.all().of("a","b");
 
@@ -38,6 +42,7 @@ public class CardinalityTest extends AbstractJValidationsTestCase {
         assertEquals(2, allOfTwo.requiredCount());
     }
 
+    @Test
     public void testExactlyCardinality() {
         Cardinality exactlyTwo = SyntaxSupport.Cardinalities.exactly(2);
 
@@ -53,6 +58,7 @@ public class CardinalityTest extends AbstractJValidationsTestCase {
         assertEquals(2, exactlyTwo.requiredCount());
     }
 
+    @Test
     public void testBothCardinality() {
         Cardinality both = SyntaxSupport.Cardinalities.both().of("a", "b");
 
@@ -67,6 +73,7 @@ public class CardinalityTest extends AbstractJValidationsTestCase {
         assertEquals(2, both.requiredCount());
     }
 
+    @Test
     public void testAllOrNoneCardinality() {
         Cardinality allOrNoneOfTwo = SyntaxSupport.Cardinalities.allOrNone().of("a","b");
         assertUnhappyWith(allOrNoneOfTwo, 1, 3);
