@@ -15,18 +15,7 @@
     <option name="historyRevisionsNumber" value="4" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" readonly="true" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/jvalidations/SyntaxSupportTest.java" afterPath="$PROJECT_DIR$/src/test/jvalidations/SyntaxSupportTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/jvalidations/ParametersTest.java" afterPath="$PROJECT_DIR$/src/test/jvalidations/ParametersTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/jvalidations/DefaultValidationBuilderTest.java" afterPath="$PROJECT_DIR$/src/test/jvalidations/DefaultValidationBuilderTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jvalidation2.iws" afterPath="$PROJECT_DIR$/jvalidation2.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/jvalidations/CardinalityTest.java" afterPath="$PROJECT_DIR$/src/test/jvalidations/CardinalityTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/jvalidations/AbstractJValidationsTestCase.java" afterPath="$PROJECT_DIR$/src/test/jvalidations/AbstractJValidationsTestCase.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/junit-4.6.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/jvalidations/MethodAccessorTest.java" afterPath="$PROJECT_DIR$/src/test/jvalidations/MethodAccessorTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jvalidation2.iml" afterPath="$PROJECT_DIR$/jvalidation2.iml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/junit-4.4.jar" afterPath="" />
-    </list>
+    <list default="true" readonly="true" name="Default" comment="" />
     <ignored path="jvalidation2.iws" />
     <ignored path=".idea/workspace.xml" />
   </component>
@@ -138,13 +127,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AbstractJValidationsTestCase.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="AbstractJValidationsTestCase.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/jvalidations/AbstractJValidationsTestCase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="15" selection-start="1194" selection-end="1194" vertical-scroll-proportion="0.3322314">
+            <state line="40" column="15" selection-start="1194" selection-end="1194" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/build.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="121" selection-start="629" selection-end="629" vertical-scroll-proportion="-2.0511944">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -200,15 +198,6 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Cookbook.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/doc/jvalidations/cookbook/Cookbook.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="79" column="31" selection-start="4450" selection-end="4450" vertical-scroll-proportion="0.0">
-              <folding />
             </state>
           </provider>
         </entry>
@@ -789,13 +778,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="121" selection-start="629" selection-end="629" vertical-scroll-proportion="-7.5789475">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/java/jvalidations/ParameterLookupForCallbackMethod.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="17" selection-start="102" selection-end="102" vertical-scroll-proportion="0.0">
@@ -898,10 +880,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/jvalidations/AbstractJValidationsTestCase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="15" selection-start="1194" selection-end="1194" vertical-scroll-proportion="0.3322314">
+        <state line="40" column="15" selection-start="1194" selection-end="1194" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="121" selection-start="629" selection-end="629" vertical-scroll-proportion="-2.0511944">
+          <folding />
         </state>
       </provider>
     </entry>
