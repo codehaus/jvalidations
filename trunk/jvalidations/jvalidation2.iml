@@ -12,7 +12,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/jedi_2.3_jdk1.5.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/jedi_2.10.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
