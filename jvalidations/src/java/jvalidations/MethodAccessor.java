@@ -1,16 +1,16 @@
 package jvalidations;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 import static jvalidations.functional.Functional.find;
 import static jvalidations.functional.Functors.declaredMethod;
 import static jvalidations.functional.Functors.superClass;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
-public class MethodAccessor extends AbstractAccessor{
+public class MethodAccessor extends AbstractAccessor {
 
     public MethodAccessor(String name) {
-        super(name);
+        super(name.substring(0, name.length() - 2));
     }
 
     public Object value(Object candidate) {
@@ -31,7 +31,7 @@ public class MethodAccessor extends AbstractAccessor{
 
     private Method findMethodOrDie(Object candidate) {
         Method method = find(declaredMethod(name), candidate.getClass(), superClass());
-        if(method == null) {
+        if (method == null) {
             throw new RuntimeException("Could not find method '" + name + "' in '" + candidate.getClass() + "'");
         }
         return method;

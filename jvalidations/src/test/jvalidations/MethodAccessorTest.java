@@ -1,16 +1,17 @@
 package jvalidations;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 import org.junit.Test;
 
 import java.util.ArrayList;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class MethodAccessorTest  {
 
     @Test
     public void testMeaningfulExceptionIsThrownIfMethodCannotBeFound() {
-        MethodAccessor accessor = new MethodAccessor("thisMethodDoesNotExist");
+        MethodAccessor accessor = new MethodAccessor("thisMethodDoesNotExist()");
         try {
             accessor.value(new Object());
             fail("Did not get expected exception");
@@ -21,15 +22,20 @@ public class MethodAccessorTest  {
     
     @Test
     public void testExecutesMethodOnSuppliedInstance() {
-        MethodAccessor accessor = new MethodAccessor("getClass");
+        MethodAccessor accessor = new MethodAccessor("getClass()");
         Object instance = new Object();
         assertEquals(instance.getClass(), accessor.value(instance));
     }
 
     @Test
     public void testExecutesMethodOnSuppliedInstanceEvenIfItsDefinedInTheSuperClass() {
-        MethodAccessor accessor = new MethodAccessor("getClass");
+        MethodAccessor accessor = new MethodAccessor("getClass()");
         Object instance = new ArrayList();
         assertEquals(instance.getClass(), accessor.value(instance));
+    }
+
+    @Test
+    public void testExecutesNestedMethod() {
+
     }
 }
