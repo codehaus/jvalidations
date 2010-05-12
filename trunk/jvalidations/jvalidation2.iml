@@ -58,5 +58,8 @@
   <component name="RModuleSettingsStorage">
     <RMODULE_SETTINGS_STORAGE_ID NAME="NUMBER" VALUE="0" />
   </component>
+  <component name="XcordionConfiguration">
+    <option name="xcordionBackingClassName" value="Jvalidation2ConcordionTestCase" />
+  </component>
 </module>
 
