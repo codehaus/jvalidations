@@ -36,8 +36,8 @@ public interface Accessor {
         public static Functor<String, Accessor> fromString() {
             return new Functor<String, Accessor>() {
                 public Accessor execute(String s) {
-                    if(s.endsWith("()")) {
-                        return new MethodAccessor(s.substring(0,s.length()-2));
+                    if(s.endsWith(")")) {
+                        return new MethodAccessor(s);
                     }
                     return new FieldAccessor(s);
                 }
