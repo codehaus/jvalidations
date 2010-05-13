@@ -36,6 +36,25 @@ public class MethodAccessorTest  {
 
     @Test
     public void testExecutesNestedMethod() {
+        MethodAccessor accessor = new MethodAccessor("stringOf(myValue())");
+        Object instance = new TestObject(43);
+        assertEquals("43", accessor.value(instance));
 
+    }
+
+    public static class TestObject {
+        private final int value;
+
+        public TestObject(int value) {
+            this.value = value;
+        }
+
+        public String stringOf(Integer in) {
+            return in.toString();
+        }
+
+        public Integer myValue() {
+            return value;
+        }
     }
 }
