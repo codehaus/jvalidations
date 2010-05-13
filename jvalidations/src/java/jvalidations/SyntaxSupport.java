@@ -1,5 +1,12 @@
 package jvalidations;
 
+import org.hamcrest.Matcher;
+import org.hamcrest.StringDescription;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.List;
+
 import static jedi.functional.Coercions.asArray;
 import static jedi.functional.FunctionalPrimitives.collect;
 import static jvalidations.Accessor.Functors.name;
@@ -8,13 +15,7 @@ import static jvalidations.ParameterLookupForCallbackMethod.Functors.value;
 import static jvalidations.functional.Functional.find;
 import static jvalidations.functional.Functors.declaredMethod;
 import static jvalidations.functional.Functors.superClass;
-import org.hamcrest.Matcher;
-import org.hamcrest.StringDescription;
 import static org.hamcrest.core.Is.is;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.List;
 
 public class SyntaxSupport {
     public static ElseClause _else(final Object report,
@@ -227,9 +228,21 @@ public class SyntaxSupport {
                 }
 
                 public Object value(Object candidate, Cardinality cardinality, Matcher matcher, int numValid) {
-                    return cardinality.getAccessors().get(0).name();
+                    String name = cardinality.getAccessors().get(0).name();
+                    if (isQueryMethod(name)) {
+                        name = stripParenthesis(name);
+                    }
+                    return name;
+                }
+
+                private String stripParenthesis(String name) {
+                    return name.substring(0, name.length() - 2);
                 }
             };
+        }
+
+        private static boolean isQueryMethod(String name) {
+            return name.endsWith("()");
         }
 
         public static ParameterLookupForCallbackMethod constant(final Object value) {
@@ -254,6 +267,18 @@ public class SyntaxSupport {
                     StringDescription description = new StringDescription();
                     matcher.describeTo(description);
                     return description.toString();
+                }
+            };
+        }
+
+        public static ParameterLookupForCallbackMethod validatee() {
+            return new ParameterLookupForCallbackMethod() {
+                public Class type(Object candidate, Cardinality cardinality, Matcher matcher) {
+                    return candidate.getClass();
+                }
+
+                public Object value(Object candidate, Cardinality cardinality, Matcher matcher, int numValid) {
+                    return candidate;
                 }
             };
         }
